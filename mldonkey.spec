@@ -160,11 +160,11 @@ Group:		Applications/Networking
 
 %description utils
 This package includes misc utils for mldonkey eg.: ed2k_hash,
-make_torent, get_range.
+make_torent, get_range, copysource, subconv.
 
 %description utils -l pl
 Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: ed2k_hash,
-make_torent, get_range.
+make_torent, get_range, copysource, subconv.
 
 %prep
 %setup -q -n %{name}-%{main_ver}.%{sub_ver}
