@@ -33,10 +33,10 @@ BuildRequires:	ocaml-camlp4
 BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	perl
 PreReq:		rc-scripts
-Requires(pre): /bin/id
-Requires(pre): /usr/bin/getgid
-Requires(pre): /usr/sbin/groupadd
-Requires(pre): /usr/sbin/useradd
+Requires(pre):	/bin/id
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
+Requires(pre):	/usr/sbin/useradd
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(post,preun):	/sbin/chkconfig
