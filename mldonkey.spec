@@ -43,7 +43,8 @@ Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 Patch2:		%{name}-iconv-in-libc.patch
 Patch3:		%{name}-submit-case.patch
-Patch4:		http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/patch_pack30a.gz
+# PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
+Patch4:		%{name}-patch_pack30a.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
