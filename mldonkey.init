@@ -29,7 +29,7 @@ else
 fi
 
 # Get service config
-if [ -f /etc/sysconfig/mldonkey ] ; then
+if [ -f /etc/sysconfig/mldonkey ]; then
 	. /etc/sysconfig/mldonkey
 fi
 
