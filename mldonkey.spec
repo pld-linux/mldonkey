@@ -18,21 +18,16 @@
 %undefine with_gui
 %endif
 
-# TODO
-# - what's the point of main_ver and sub_ver?
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-%define	main_ver	2.5
-%define	sub_ver		28
 %define ocaml_ver	3.08
-%define ocaml_rel	-1
-Version:	%{main_ver}.%{sub_ver}
+Version:	2.5.28
 Release:	4
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
-#Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
+#Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{version}.tar.bz2
 # Source0-md5:	bee2811a76f83c543ca19e45a9d04ff4
 Source1:	%{name}.init
@@ -50,7 +45,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
+BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.159
@@ -178,7 +173,7 @@ Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: ed2k_hash,
 make_torent, get_range, copysource, subconv.
 
 %prep
-%setup -q -n %{name}-%{main_ver}.%{sub_ver}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -204,19 +199,19 @@ cd config
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	--enable-pthread \
-	%{?with_audiogalaxy:--en}%{?!with_audiogalaxy:--dis}able-audiogalaxy \
-	%{?with_opennap:--en}%{?!with_opennap:--dis}able-opennap \
-	%{?with_gnutella:--en}%{?!with_gnutella:--dis}able-gnutella \
-	%{?with_gnutella2:--en}%{?!with_gnutella2:--dis}able-gnutella2 \
-	%{?with_fasttrack:--en}%{?!with_fasttrack:--dis}able-fasttrack \
-	%{?with_directconnect:--en}%{?!with_directconnect:--dis}able-directconnect \
-	%{?with_soulseek:--en}%{?!with_soulseek:--dis}able-soulseek \
-	%{?with_openft:--en}%{?!with_openft:--dis}able-openft \
-	%{?with_cymes:--en}%{?!with_cymes:--dis}able-cymes \
-	%{?with_donkey:--en}%{?!with_donkey:--dis}able-donkey \
-	%{?with_bittorrent:--en}%{?!with_bittorrent:--dis}able-bittorrent \
-	%{?with_filetp:--en}%{?!with_filetp:--dis}able-filetp \
-	%{?with_gui:--en}%{?!with_gui:--dis}able-gui
+	%{?with_audiogalaxy:--en}%{!?with_audiogalaxy:--dis}able-audiogalaxy \
+	%{?with_opennap:--en}%{!?with_opennap:--dis}able-opennap \
+	%{?with_gnutella:--en}%{!?with_gnutella:--dis}able-gnutella \
+	%{?with_gnutella2:--en}%{!?with_gnutella2:--dis}able-gnutella2 \
+	%{?with_fasttrack:--en}%{!?with_fasttrack:--dis}able-fasttrack \
+	%{?with_directconnect:--en}%{!?with_directconnect:--dis}able-directconnect \
+	%{?with_soulseek:--en}%{!?with_soulseek:--dis}able-soulseek \
+	%{?with_openft:--en}%{!?with_openft:--dis}able-openft \
+	%{?with_cymes:--en}%{!?with_cymes:--dis}able-cymes \
+	%{?with_donkey:--en}%{!?with_donkey:--dis}able-donkey \
+	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
+	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
+	%{?with_gui:--en}%{!?with_gui:--dis}able-gui
 
 cd ..
 %{__make} opt utils
