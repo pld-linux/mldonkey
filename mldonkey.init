@@ -67,7 +67,7 @@ case "$1" in
 	rm ~mldonkey/*.tmp >/dev/null 2>&1
 	;;
   status)
-	status mlnetd
+	status mldonkey mlnetd
 	exit $?
 	;;
   *)
