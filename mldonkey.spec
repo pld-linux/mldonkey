@@ -1,3 +1,14 @@
+#
+# Conditional build:
+# _without_audiogalaxy	- without Audio Galaxy support
+# _without_opennap	- without Open Napster support
+# _without_limewire	- without Gnutella LimeWire support
+# _without_directconnect- without Direct Connect support
+# _without_soulseek	- without Soulseek support
+# _without_openft	- without OpenFT support
+# _without_cymes	- without Cymes support
+# _without_donkey	- without eDonkey support
+#
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
@@ -14,6 +25,15 @@ URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	lablgtk
+BuildRequires:	perl
+PreReq:		rc-scripts
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/bin/id
+Requires(pre):	/usr/sbin/groupadd
+Requires(pre):	/usr/sbin/useradd
+Requires(post,preun):	/sbin/chkconfig
+Requires(postun):	/usr/sbin/userdel
+Requires(postun):	/usr/sbin/groupdel
 Requires:	ocaml
 Requires:	ocaml-camlp4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -38,8 +58,7 @@ of the basic Windows donkey client, plus some more:
   - You can search in the history of all files you have seen on the
     network.
 
-
-It can also access other peer-to-peer networks :
+It can also access other peer-to-peer networks:
 - Direct Connect
 - Open Napster
 - Gnutella LimeWire
@@ -48,30 +67,54 @@ It can also access other peer-to-peer networks :
 - OpenFT
 
 %description -l pl
-mldonkey jest nowym klientem do eDonkey 2000, sieci peer-to-peer
-bardzo wydajnej przy przesy³aniu du¿ych plików dzieki protoko³owi
-pobierania danych z wielu ¼róde³. Klient ten zosta³ napisany w jêzyku
-Objective-Caml i jest dostarczany z interfejsami GTK, WWW i telnet.
-Dzia³a na wiêkszo¶ci plaform UNIXowych.
+mldonkey jest nowym klientem do eDonkey 2000, zdecentralizowanej sieci
+peer-to-peer bardzo wydajnej przy przesy³aniu du¿ych plików dzieki
+protoko³owi pobierania danych z wielu ¼róde³. Klient ten zosta³
+napisany w jêzyku Objective-Caml i ma wiêkszo¶æ cech podstawowego
+klienta windowsowego, a ponadto:
+ - dzia³a na wiêkszo¶ci platform uniksowych,
+ - pozwala zdalnie sterowaæ klientem przez interfejs telnet, WWW lub
+   GTK,
+ - mo¿na ³±czyæ siê z kilkoma serwerami, wtedy ka¿de przeszukiwanie
+   odpyta po³±czone serwery,
+ - mo¿na wybieraæ pliki mp3 po bitrate w zapytaniach,
+ - mo¿na wybieraæ nazwê pliku do ¶ci±gniêcia przed przej¶ciem do
+   katalogu incoming,
+ - mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym
+   interfejsie,
+ - mo¿na zapamiêtaæ wyniki zapytañ w interfejsie z linii poleceñ,
+ - mo¿na przeszukiwaæ historiê wszystkich plików widzianych w sieci.
+
+Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
+ - Direct Connect,
+ - Open Napster,
+ - Gnutella LimeWire,
+ - Soulseek,
+ - Audio Galaxy,
+ - OpenFT.
 
 %package gui
 Summary:	Graphical frontend for mldonkey based on GTK
-Summary(pl):	Interfejs u¿ytkownika GTK dla mldonkey
+Summary(pl):	Graficzny interfejs u¿ytkownika GTK dla mldonkey
 Group:		X11/Applications/Networking
 Requires:	gtk+
 Requires:	lablgtk
 
 %description gui
 The GTK interface for mldonkey provides a convenient way of managing
-all mldonkey operations. It gives details about conected servers,
+all mldonkey operations. It gives details about connected servers,
 downloaded files, friends and lets one search for files in a pleasing
 way.
 
 %description gui -l pl
-Interfejs u¿ytkownika GTK dla mldonkey.
+Interfejs u¿ytkownika GTK dla mldonkey daje wygodny sposób zarz±dzania
+wszystkimi operacjami mldonkey. Udostêpnia szczegó³y dotycz±ce
+po³±czonych serwerów, ¶ci±ganych plików, znajomych oraz pozwala
+wyszukiwaæ pliki w przyjemny sposób.
 
 %package submit
 Summary:	This tool gives you an easy way to add a ed2k-link
+Summary(pl):	Narzêdzie pozwalaj±ce ³atwo dodaæ odno¶niki ed2k
 Group:		X11/Applications
 Requires:	kdebase
 Requires:	perl-libwww-perl
@@ -81,13 +124,19 @@ This tool gives you an easy way to add a ed2k-link (like
 ed2k://|file|filename.exe|21352658|72b0b287cab7d875ccc1d89ebe910b9g|)
 with a single click to your mldonkey download queue.
 
-You need to edit /etc/sysconfig/mldonkey_submit
+You need to edit /etc/sysconfig/mldonkey_submit.
+
+%description submit -l pl
+To narzêdzie pozwala ³atwo dodaæ odno¶nik ed2k (w rodzaju
+ed2k://|file|filename.exe|21352658|72b0b287cab7d875ccc1d89ebe910b9g|)
+pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
+
+Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %prep
 %setup -q -n mldonkey
 
 %build
-
 perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|'  distrib/ed2k_submit/mldonkey_submit
 
 %configure2_13 \
@@ -125,7 +174,7 @@ install mldonkey_guistarter $RPM_BUILD_ROOT%{_bindir}/mldonkey_guistarter
 install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 
-install -d $RPM_BUILD_ROOT%{_datadir}/services/
+install -d $RPM_BUILD_ROOT%{_datadir}/services
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
 install distrib/ed2k_submit/ed2k.protocol  $RPM_BUILD_ROOT%{_datadir}/services/ed2k.protocol
@@ -181,6 +230,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
+# isn't COPYING just GPL?
 %doc COPYING docs/* distrib/AUTHORS distrib/BUGS distrib/ChangeLog distrib/Developers.txt distrib/directconnect.ini distrib/ed2k_links.txt distrib/FAQ.html distrib/Readme.txt distrib/TODO
 %attr(754,root,root) %{_initrddir}/mldonkey
 %attr(755,root,root) %{_bindir}/mldonkeyd
@@ -199,6 +249,6 @@ rm -rf $RPM_BUILD_ROOT
 %files submit
 %defattr(644,root,root,755)
 %doc COPYING
-%config(noreplace) %{_sysconfdir}/sysconfig/mldonkey_submit
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/sysconfig/mldonkey_submit
 %attr(755,root,root) %{_bindir}/mldonkey_submit
 %{_datadir}/services/ed2k.protocol
