@@ -18,6 +18,7 @@ Epoch:		0
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://savannah.nongnu.org/download/mldonkey/release-2.4/official/%{name}-%{version}-0.sources.tar.gz
+# Source0-md5:	757905a87b3cac26a3d14595edcc3bce
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
