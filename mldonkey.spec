@@ -312,7 +312,14 @@ fi
 
 %triggerpostun -- mldonkey <= 2.5.22-2
 if [ -f /etc/sysconfig/mldonkey ]; then
-sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
+	sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
+fi
+
+%triggerpostun -- mldonkey < 2.5.22-2.3
+if [ -f /etc/sysconfig/mldonkey ]; then
+	# new sysconfig, with lots of vars
+# TODO
+#	sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
 fi
 
 %triggerpostun -- mldonkey < 2.5.28-0.4
