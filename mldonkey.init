@@ -45,8 +45,19 @@ start() {
 	daemon --fork --user $USER "cd ~$USER && exec $MLDONKEY_PATH > ${LOG:-/dev/null} 2>&1"
 	RETVAL=$?
 
+	# wait for it, it might die if config files are corrupted
+	timeout=0
+	while [ "$(getpids)" ]; do
+		if [ $timeout -ge 5 ]; then
+			break
+		fi
+
+		timeout=$((timeout + 1))
+		sleep 1
+	done
+
 	if ! getpids > /dev/null; then
-		echo "MLDonkey could not be started! Check logfile: $LOG"
+		nls "%s could not be started! Check logfile: %s" MLDonkey "$LOG"
 		RETVAL=0
 	fi
 
@@ -85,7 +96,7 @@ stop() {
 	fi
 
 	# forcibly.
-	# killproc() sais itself ok or fail, therefore the if here
+	# killproc() sais itself ok or fail, therefore the 'if' statement here
 	if [ "$(getpids)" ]; then
 		killproc $PROG
 		RETVAL=$?
