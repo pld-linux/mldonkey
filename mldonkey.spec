@@ -36,7 +36,7 @@ BuildRequires:	autoconf
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
-BuildRequires:	ocaml-lablgtk-devel
+BuildRequires:	ocaml-lablgtk-devel >= 1.2.6
 BuildRequires:	perl-base
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
