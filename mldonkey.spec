@@ -34,6 +34,7 @@ Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
@@ -161,6 +162,8 @@ ed2k_hash, make_torent, get_range
 cd config
 %{__autoconf}
 cd ..
+cp -f /usr/share/automake/config.sub src/applets/kde/admin/
+cp -f /usr/share/automake/config.sub config
 
 %configure2_13 \
 	--enable-ocamlver=%{ocaml_ver} \
