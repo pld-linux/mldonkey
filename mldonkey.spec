@@ -45,6 +45,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
 BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
 BuildRequires:	perl-base
+BuildRequires:	zlib-devel
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
