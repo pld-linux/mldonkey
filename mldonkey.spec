@@ -23,7 +23,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08
 Version:	2.5.28
-Release:	4
+Release:	0.1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
