@@ -61,6 +61,12 @@ start() {
 		RETVAL=0
 	fi
 
+	# TEMP FIX, rc-scripts fails to keep nice level, when su is used
+	# keep it, until rc-scripts is fixed.
+	for pid in $(getpids); do
+		renice ${SERVICE_RUN_NICE_LEVEL:-$DEFAULT_SERVICE_RUN_NICE_LEVEL} -p $pid > /dev/null
+	done
+
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/mldonkey
 }
 
