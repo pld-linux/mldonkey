@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Startup script for Mldonkey
+# Startup script for MLDonkey
 #
 # Leszek Krupinski <leafnode@pld.org.pl>
 #
@@ -8,7 +8,7 @@
 # Laurent Culioli <laurent@pschit.net>
 #
 # chkconfig:	2345 90 15
-# description:	Mldonkey is client to access multiple peer-to-peer network
+# description:	MLDonkey is client to access multiple peer-to-peer network
 # processname:	mldonkey
 # config:	/etc/sysconfig/mldonkey
 
