@@ -25,17 +25,19 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-%define ocaml_ver	3.08
+%define ocaml_ver	3.08.2
 %define patch_pack	c
-%define real_ver	2.5.30
-Version:	%{real_ver}%{patch_pack}
-Release:	3
+%define real_ver	2.5.30.1
+#Version:	%{real_ver}%{patch_pack}
+Version:	%{real_ver}
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
-Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
-# Source0-md5:	9b1a10ba903de3d69922980b6f48a648
+#Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
+Source0:       http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-2.5.30-1.tar.bz2
+# Source0-md5:	b41531257d898ef5b27d99ac6b6a0520
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -46,7 +48,7 @@ Patch1:		%{name}-newgtk.patch
 Patch2:		%{name}-iconv-in-libc.patch
 Patch3:		%{name}-submit-case.patch
 # PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
-Patch4:		%{name}-patch_pack30%{patch_pack}.gz
+#Patch4:		%{name}-patch_pack30%{patch_pack}.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -182,12 +184,13 @@ Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: ed2k_hash,
 make_torent, get_range, copysource, subconv.
 
 %prep
-%setup -q -n %{name}-%{real_ver}
+#%setup -q -n %{name}-%{real_ver}
+%setup -q -n %{name}-2.5.30-1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
+#%patch4 -p1
 
 %build
 cd config
