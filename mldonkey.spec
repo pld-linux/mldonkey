@@ -152,6 +152,10 @@ Group:		Applications/Networking
 This package includes misc utils for mldonkey eg.:
 ed2k_hash, make_torent, get_range
 
+%description utils -l pl
+Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkey-a:
+ed2k_hash, make_torent, get_range
+
 %prep
 %setup -q -n %{name}-%(echo %{main_ver}|tr . -)-%{sub_ver}
 %patch0 -p1
