@@ -30,13 +30,8 @@ BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	perl
 PreReq:		rc-scripts
-Requires(pre):	/usr/bin/getgid
-Requires(pre):	/bin/id
-Requires(pre):	/usr/sbin/groupadd
-Requires(pre):	/usr/sbin/useradd
+Requires(pre):	user-mldonkey
 Requires(post,preun):	/sbin/chkconfig
-Requires(postun):	/usr/sbin/userdel
-Requires(postun):	/usr/sbin/groupdel
 Requires:	ocaml
 Requires:	ocaml-camlp4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -187,27 +182,6 @@ install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_s
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
 install distrib/ed2k_submit/ed2k.protocol  $RPM_BUILD_ROOT%{_datadir}/services/ed2k.protocol
 
-%pre
-if [ -n "`getgid mldonkey`" ]; then
-        if [ "`getgid mldonkey`" != "33" ]; then
-                echo "Error: group mldonkey doesn't have gid=33. Correct this before installing mldonkey." 1>&2
-                exit 1
-        fi
-else
-        /usr/sbin/groupadd -g 33 -r -f mldonkey
-fi
-
-if [ -n "`id -u mldonkey 2>/dev/null`" ]; then
-        if [ "`id -u mysql`" != "47" ]; then
-                echo "Error: user mldonkey doesn't have uid=47. Correct this before installing mldonkey." 1>&2
-                exit 1
-        fi
-else
-        /usr/sbin/useradd -m -o -r -u 47 \
-                        -d /home/services/mldonkey -s /bin/sh -g mldonkey \
-                        -c "mldonkey" mldonkey 1>&2
-fi
-
 %post
 /sbin/chkconfig --add mldonkey
 if [ -f /var/lock/subsys/mldonkey ]; then
@@ -224,12 +198,6 @@ if [ "$1" = "0" ]; then
                 /etc/rc.d/init.d/mldonkey stop
         fi
         /sbin/chkconfig --del mldonkey
-fi
-
-%postun
-if [ "$1" = "0" ]; then
-        /usr/sbin/userdel mldonkey
-        /usr/sbin/groupdel mldonkey
 fi
 
 %clean
