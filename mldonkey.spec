@@ -24,16 +24,17 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
-%define	sub_ver		22
-%define ocaml_ver	3.07
+%define	sub_ver		28
+%define ocaml_ver	3.08
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
 Release:	4
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
-Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
-# Source0-md5:	958ffb63dbcfcb0f6e48788774dfbb42
+#Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
+Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{version}.tar.bz2
+# Source0-md5:	bee2811a76f83c543ca19e45a9d04ff4
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -42,6 +43,7 @@ Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 Patch2:		%{name}-iconv-in-libc.patch
+Patch3:		http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/patch_pack28h.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -180,6 +182,7 @@ make_torent, get_range, copysource, subconv.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 # perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
