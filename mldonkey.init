@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# Startup script for Mldonkey
+#
+# Leszek Krupinski <leafnode@pld.org.pl>
+#
+# Based on script by:
+# Laurent Culioli <laurent@pschit.net>
+#
+# chkconfig: 2345 90 15
+# description: Mldonkey is client to access multiple peer-to-peer network
+# processname: mldonkey
+# config: /etc/sysconfig/mldonkey
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if is_no "${NETWORKING}"; then
+        msg_network_down mldonkey
+        exit 1
+fi
+
+# Get service config
+if [ -f /etc/sysconfig/mldonkey ] ; then
+        . /etc/sysconfig/mldonkey
+fi
+
+case "$1" in
+    start)
+        if [ -f /var/lock/subsys/mldonkey ]; then
+                msg_already_running mldonkey
+        else
+                msg_starting mldonkey
+                [ -z "$MLDONKEY_NICE" ] && MLDONKEY_NICE=0
+                cd ~mldonkey
+		daemon --user mldonkey $MLDONKEY_NICE "$MLDONKEY_PATH  > /dev/null 2>&1 &"
+                RETVAL=$?
+                [ $RETVAL -eq 0 ] && touch /var/lock/subsys/mldonkey
+        fi
+    	;;
+    stop)
+        if [ -f /var/lock/subsys/mldonkey ]; then
+                msg_stopping mldonkey
+                killproc mldonkeyd
+                sleep 1
+                rm -f /var/lock/subsys/mldonkey >/dev/null 2>&1
+        else
+                msg_not_running mldonkey
+                exit 1
+        fi
+    	;;
+    restart|reload)
+    	$0 stop
+	$0 start
+    	;;
+    status)
+    	status mldonkey
+	;;
+    *)
+        msg_usage "$0 {start|stop|status|restart|reload}"
+        exit 1
+        ;;
+esac
+
+exit $RETVAL
