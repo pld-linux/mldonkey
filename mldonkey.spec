@@ -26,7 +26,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	2
+Release:	2.1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -297,6 +297,11 @@ fi
 if [ "$1" = "0" ]; then
 	%userremove mldonkey
 	%groupremove mldonkey
+fi
+
+%triggerpostun -- mldonkey <= 2.5.22-2
+if [ -f /etc/sysconfig/mldonkey ]; then
+sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
 fi
 
 %files
