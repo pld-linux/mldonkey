@@ -14,16 +14,16 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
-%define	sub_ver		16
+%define	sub_ver		18
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	2
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
-# Source0-md5:	a64121509d6a7bb196fe0b5ce403c60b
+# Source0-md5:	592b04d07cc4483f7146940986c94ff0
 
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
@@ -32,7 +32,6 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
-Patch2:		%{name}-backchanges.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -161,7 +160,6 @@ make_torent, get_range.
 %setup -q -n %{name}-%{main_ver}.%{sub_ver}
 %patch0 -p1
 %patch1 -p1
-%patch2
 
 %build
 # perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
@@ -171,7 +169,16 @@ cd ..
 cp -f /usr/share/automake/config.sub src/applets/kde/admin
 cp -f /usr/share/automake/config.sub config
 
-%configure2_13 \
+mkdir -p build
+rm -f icons/big/*.ml_icon
+rm -f icons/small/*.ml_icon
+rm -f icons/*.ml_icon
+rm -f *.cma *.cmxa *.a
+rm -f mlgnut mlnap mlbt mldonkey mlslsk mldonkey_gui*
+rm -f build/*.cma build/*.cmxa build/*.a
+touch .depend
+cd config
+%configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	%{?!with_audiogalaxy:--disable-audiogalaxy} \
 	%{?!with_opennap:--disable-opennap} \
@@ -183,6 +190,7 @@ cp -f /usr/share/automake/config.sub config
 	%{?!with_donkey:--disable-donkey} \
 	%{?!with_gui:--disable-gui}
 
+cd ..
 %{__make} opt utils
 
 %install
@@ -210,6 +218,7 @@ install make_torrent $RPM_BUILD_ROOT%{_bindir}
 install get_range $RPM_BUILD_ROOT%{_bindir}
 install ed2k_hash $RPM_BUILD_ROOT%{_bindir}
 install copysources $RPM_BUILD_ROOT%{_bindir}
+install subconv $RPM_BUILD_ROOT%{_bindir}
 
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
@@ -307,3 +316,4 @@ fi
 %attr(755,root,root) %{_bindir}/copysources
 %attr(755,root,root) %{_bindir}/make_torrent
 %attr(755,root,root) %{_bindir}/ed2k_hash
+%attr(755,root,root) %{_bindir}/subconv
