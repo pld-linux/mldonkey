@@ -21,6 +21,9 @@ Source0:	http://savannah.nongnu.org/download/mldonkey/stable/%{name}-%{version}-
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
+Source4:	%{name}.png
+Source5:	%{name}-gui.desktop
+Source6:	%{name}-gui2.desktop
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
@@ -159,6 +162,8 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_libdir}/mldonkey
 install -d $RPM_BUILD_ROOT%{_initrddir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
 
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mldonkey
 install mldonkey $RPM_BUILD_ROOT%{_bindir}/mldonkeyd
@@ -173,6 +178,9 @@ install mldonkey_gui2 $RPM_BUILD_ROOT%{_bindir}/mldonkey_gui2
 install mldonkey_guistarter $RPM_BUILD_ROOT%{_bindir}/mldonkey_guistarter
 install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
+install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
+install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
+install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
 
 install -d $RPM_BUILD_ROOT%{_datadir}/services
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
@@ -245,6 +253,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mlchat
 %attr(755,root,root) %{_bindir}/mldonkey_gui*
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
+%attr(755,root,root) %{_pixmapsdir}/*
+%attr(755,root,root) %{_applnkdir}/Network/Misc/*
 
 %files submit
 %defattr(644,root,root,755)
