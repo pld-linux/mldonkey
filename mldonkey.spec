@@ -29,7 +29,7 @@ Name:		mldonkey
 %define patch_pack	c
 %define real_ver	2.5.30
 Version:	%{real_ver}%{patch_pack}
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -182,7 +182,7 @@ Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: ed2k_hash,
 make_torent, get_range, copysource, subconv.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{real_ver}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
