@@ -39,8 +39,7 @@ case "$1" in
 	if [ ! -f /var/lock/subsys/mldonkey ]; then
 		msg_starting mldonkey
 		[ -z "$MLDONKEY_NICE" ] && MLDONKEY_NICE=0
-		cd ~mldonkey
-		daemon --user mldonkey $MLDONKEY_NICE "$MLDONKEY_PATH > /dev/null 2>&1 &"
+		daemon --user mldonkey $MLDONKEY_NICE "cd ~mldonkey && $MLDONKEY_PATH > /dev/null 2>&1 &"
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/mldonkey
 	else
