@@ -1,4 +1,0 @@
-# $Id$
-
-MLDONKEY_NICE="+2"
-MLDONKEY_PATH="/usr/bin/mlnetd"
