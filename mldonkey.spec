@@ -159,7 +159,7 @@ perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig} \
-	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Network/Misc,%{_datadir}/services}
+	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_datadir}/services}
 
 # core
 install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
@@ -180,7 +180,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
 install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
-install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
+install %{SOURCE5} $RPM_BUILD_ROOT%{_desktopdir}/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -248,7 +248,7 @@ fi
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
 %{_pixmapsdir}/*
-%{_applnkdir}/Network/Misc/*
+%{_desktopdir}/*
 
 %files submit
 %defattr(644,root,root,755)
