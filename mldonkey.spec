@@ -180,9 +180,12 @@ install distrib/ed2k_submit/ed2k.protocol  $RPM_BUILD_ROOT%{_datadir}/services/e
 install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
-install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
-install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
-install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
+install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
+install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`getgid mldonkey`" ]; then
@@ -229,13 +232,9 @@ if [ "$1" = "0" ]; then
         /usr/sbin/groupdel mldonkey
 fi
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(644,root,root,755)
-# isn't COPYING just GPL?
-%doc COPYING docs/* distrib/AUTHORS distrib/BUGS distrib/ChangeLog distrib/directconnect.ini distrib/ed2k_links.txt distrib/FAQ.html distrib/TODO
+%doc docs/* distrib/{AUTHORS,BUGS,ChangeLog,directconnect.ini,ed2k_links.txt,FAQ.html,TODO}
 %config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
 %attr(754,root,root) %{_initrddir}/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
@@ -245,7 +244,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files gui
 %defattr(644,root,root,755)
-%doc COPYING
 %attr(755,root,root) %{_bindir}/mlchat
 %attr(755,root,root) %{_bindir}/mlgui
 %attr(755,root,root) %{_bindir}/mlnet+gui
@@ -256,7 +254,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files submit
 %defattr(644,root,root,755)
-%doc COPYING
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/sysconfig/mldonkey_submit
 %attr(755,root,root) %{_bindir}/mldonkey_submit
 %{_datadir}/services/ed2k.protocol
