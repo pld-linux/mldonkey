@@ -24,6 +24,7 @@ Source3:	%{name}.sh
 Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Source6:	%{name}-gui2.desktop
+Patch0:		%{name}-configwin.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
@@ -133,6 +134,7 @@ Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %prep
 %setup -q -n mldonkey
+%patch0 -p1
 
 %build
 perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|'  distrib/ed2k_submit/mldonkey_submit
