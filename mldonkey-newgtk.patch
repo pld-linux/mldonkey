@@ -1,0 +1,10 @@
+--- mldonkey/config/configure.in.wiget	Wed Dec 17 15:29:27 2003
++++ mldonkey/config/configure.in	Tue Jan 27 19:05:37 2004
+@@ -685,6 +685,7 @@
+         GTOOLBOX="`$OCAMLC -where`/lablgtk/gToolbox.mli"
+ 	fi
+         grep popup $GTOOLBOX | grep -i button 2> /dev/null && GTOOLBOX_ARGS=new
++		GTOOLBOX_ARGS=new
+         if test "$GTOOLBOX_ARGS" = "new"; then
+           GTOOLBOX_POPUPMENU=' ~button: button ~time: time '
+           AC_MSG_RESULT(new)
