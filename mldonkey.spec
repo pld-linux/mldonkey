@@ -1,13 +1,17 @@
 #
 # Conditional build:
-%bcond_without 	audiogalaxy	# without Audio Galaxy support
+%bcond_with 	audiogalaxy	# without Audio Galaxy support	(broken)
 %bcond_without	opennap		# without Open Napster support
-%bcond_without	limewire	# without Gnutella LimeWire support
+%bcond_without	gnutella	# without Gnutella LimeWire support
+%bcond_without	gnutella2	# without Gnutella2 support
+%bcond_without	fasttrack	# without FastTrack support
 %bcond_without	directconnect	# without Direct Connect support
 %bcond_without	soulseek	# without Soulseek support
-%bcond_without	openft		# without OpenFT support
-%bcond_without	cymes		# without Cymes support
+%bcond_with	openft		# without OpenFT support	(broken)
+%bcond_with	cymes		# without Cymes support		(not in sources)
 %bcond_without	donkey		# without eDonkey support
+%bcond_without	bittorrent	# without BitTorrent support
+%bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# without mlgui
 #
 Summary:	eDonkey 2000 p2p network client
@@ -24,7 +28,6 @@ Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
 # Source0-md5:	8a96738990f8ffc36eeb2c1f2f655826
-
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -182,15 +185,20 @@ touch .depend
 cd config
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
-	%{?!with_audiogalaxy:--disable-audiogalaxy} \
-	%{?!with_opennap:--disable-opennap} \
-	%{?!with_limewire:--disable-limewire} \
-	%{?!with_directconnect:--disable-directconnect} \
-	%{?!with_soulseek:--disable-soulseek} \
-	%{?!with_openft:--disable-openft} \
-	%{?!with_cymes:--disable-cymes} \
-	%{?!with_donkey:--disable-donkey} \
-	%{?!with_gui:--disable-gui}
+	--enable-pthread \
+	%{?with_audiogalaxy:--en}%{?!with_audiogalaxy:--dis}able-audiogalaxy \
+	%{?with_opennap:--en}%{?!with_opennap:--dis}able-opennap \
+	%{?with_gnutella:--en}%{?!with_gnutella:--dis}able-gnutella \
+	%{?with_gnutella2:--en}%{?!with_gnutella2:--dis}able-gnutella2 \
+	%{?with_fasttrack:--en}%{?!with_fasttrack:--dis}able-fasttrack \
+	%{?with_directconnect:--en}%{?!with_directconnect:--dis}able-directconnect \
+	%{?with_soulseek:--en}%{?!with_soulseek:--dis}able-soulseek \
+	%{?with_openft:--en}%{?!with_openft:--dis}able-openft \
+	%{?with_cymes:--en}%{?!with_cymes:--dis}able-cymes \
+	%{?with_donkey:--en}%{?!with_donkey:--dis}able-donkey \
+	%{?with_bittorrent:--en}%{?!with_bittorrent:--dis}able-bittorrent \
+	%{?with_filetp:--en}%{?!with_filetp:--dis}able-filetp \
+	%{?with_gui:--en}%{?!with_gui:--dis}able-gui
 
 cd ..
 %{__make} opt utils
