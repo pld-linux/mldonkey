@@ -102,6 +102,7 @@ Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
 Summary:	Graphical frontend for mldonkey based on GTK
 Summary(pl):	Graficzny interfejs u¿ytkownika GTK dla mldonkey
 Group:		X11/Applications/Networking
+Requires:	%{name} = %{version}
 
 %description gui
 The GTK interface for mldonkey provides a convenient way of managing
