@@ -1,3 +1,6 @@
+# TODO
+#  - mldonkey_command req: nc (create subpackage? move to -utils?)
+#  - mldonkey_kill req: perl (our initscript does the same, kill the program?)
 #
 # Conditional build:
 %bcond_with 	audiogalaxy	# without Audio Galaxy support	(broken)
@@ -38,7 +41,8 @@ Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 Patch2:		%{name}-iconv-in-libc.patch
-Patch3:		http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/patch_pack28h.gz
+Patch3:		%{name}-submit-case.patch
+Patch4:		http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/patch_pack28h.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -178,9 +182,9 @@ make_torent, get_range, copysource, subconv.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
-# perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
 cd config
 %{__autoconf}
 cd ..
