@@ -15,6 +15,7 @@ Name:		mldonkey
 %define	main_ver	2.5
 %define	sub_ver		4
 %define ocaml_ver	3.07
+%define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
 Release:	1
 License:	GPL
@@ -30,7 +31,7 @@ Patch0:		%{name}-configwin.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
-BuildRequires:	ocaml-camlp4
+BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
 BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	perl
 PreReq:		rc-scripts
