@@ -27,7 +27,7 @@ Source6:	%{name}-gui2.desktop
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
-BuildRequires:	lablgtk
+BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	perl
 PreReq:		rc-scripts
 Requires(pre):	/usr/bin/getgid
@@ -101,7 +101,7 @@ Summary:	Graphical frontend for mldonkey based on GTK
 Summary(pl):	Graficzny interfejs u¿ytkownika GTK dla mldonkey
 Group:		X11/Applications/Networking
 Requires:	gtk+
-Requires:	lablgtk
+Requires:	ocaml-lablgtk
 
 %description gui
 The GTK interface for mldonkey provides a convenient way of managing
