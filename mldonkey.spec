@@ -18,11 +18,8 @@
 %undefine with_gui
 %endif
 
-#TODO
-# broken deps? mldonkey configure bug?
-# checking GToolbox.popup_menu args... grep: /usr/lib/ocaml/lablgtk/gToolbox.mli: No such file or directory
-# new
-# checking for bzip2... bzip2
+# TODO
+# - what's the point of main_ver and sub_ver?
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
