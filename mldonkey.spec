@@ -30,7 +30,9 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-ocaml307.patch
+Patch2:		%{name}-gToolbox.patch
 URL:		http://www.nongnu.org/mldonkey/
+BuildRequires:	autoconf
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
@@ -143,9 +145,13 @@ Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 %setup -q -n %{name}-%{main_ver}-%{sub_ver}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
+cd config
+%{__autoconf}
+cd ..
 
 %configure2_13 \
 	--enable-ocamlver=%{ocaml_ver} \
