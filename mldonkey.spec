@@ -31,7 +31,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	2.3
+Release:	2.4
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -67,6 +67,7 @@ Requires(post,preun):	/sbin/chkconfig
 Requires(post):		sed >= 4.0
 Requires:	procps
 Requires:	wget
+Requires:	rc-scripts >= 0.4.0.10
 Provides:	group(mldonkey)
 Provides:	user(mldonkey)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
