@@ -33,8 +33,8 @@ BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	ocaml-camlp4
 BuildRequires:	perl
 PreReq:		rc-scripts
-Requires(pre): /usr/bin/getgid
 Requires(pre): /bin/id
+Requires(pre): /usr/bin/getgid
 Requires(pre): /usr/sbin/groupadd
 Requires(pre): /usr/sbin/useradd
 Requires(postun):      /usr/sbin/userdel
@@ -160,36 +160,29 @@ perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|'  distrib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_libdir}/mldonkey
-install -d $RPM_BUILD_ROOT%{_initrddir}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig,%{_pixmapsdir},%{_applnkdir}/Network/Misc,%{_datadir}/services}
 
 # core
-install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
 install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
 install distrib/mldonkey_command $RPM_BUILD_ROOT%{_bindir}/mldonkey_command
 install distrib/kill_mldonkey $RPM_BUILD_ROOT%{_bindir}/kill_mldonkey
-install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 
 install mlgui $RPM_BUILD_ROOT%{_bindir}/mlgui
 install mlnet+gui $RPM_BUILD_ROOT%{_bindir}/mlnet+gui
 install mlguistarter $RPM_BUILD_ROOT%{_bindir}/mlguistarter
 install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
-install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
-install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
-install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
 
-install -d $RPM_BUILD_ROOT%{_datadir}/services
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
 install distrib/ed2k_submit/ed2k.protocol  $RPM_BUILD_ROOT%{_datadir}/services/ed2k.protocol
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
+install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
+install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
+install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
+install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
 
 %pre
 if [ -n "`getgid mldonkey`" ]; then
@@ -241,9 +234,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
 # isn't COPYING just GPL?
 %doc COPYING docs/* distrib/AUTHORS distrib/BUGS distrib/ChangeLog distrib/directconnect.ini distrib/ed2k_links.txt distrib/FAQ.html distrib/TODO
+%config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
 %attr(754,root,root) %{_initrddir}/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
 %attr(755,root,root) %{_bindir}/mlnet
