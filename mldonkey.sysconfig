@@ -10,7 +10,7 @@ USER="mldonkey"
 # logfile, relative to home of $USER (mldonkey)
 # if You put it elsewhere make sure mldonkey user can write there.
 # empty to disable.
-LOG="mldonkey.log"
+LOG="/var/log/mldonkey.log"
 
 MLDONKEY_PATH="/usr/bin/mlnetd"
 
