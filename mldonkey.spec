@@ -13,7 +13,7 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.5
-Release:	0.1
+Release:	1
 Epoch:		0
 License:	GPL
 Group:		Applications/Networking
@@ -24,7 +24,7 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
 Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
-Source6:	%{name}-gui2.desktop
+# Source6:	%{name}-gui2.desktop
 Patch0:		%{name}-configwin.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
@@ -184,7 +184,7 @@ install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
 install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
-install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
+# install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
 
 install -d $RPM_BUILD_ROOT%{_datadir}/services
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
