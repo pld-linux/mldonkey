@@ -1,5 +1,7 @@
 # TODO
 #  - mldonkey_command req: nc (create subpackage? move to -utils?)
+#  - it creates file: .mldonkey/mlnet_strings.C
+#  - 2.5.28.1 trashes my /tmp with {peers,motd,servers}* ($TMPDIR?)
 #
 # Conditional build:
 %bcond_with 	audiogalaxy	# without Audio Galaxy support	(broken)
