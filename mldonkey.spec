@@ -5,7 +5,7 @@
 %bcond_without	gnutella	# without Gnutella LimeWire support
 %bcond_without	gnutella2	# without Gnutella2 support
 %bcond_without	fasttrack	# without FastTrack support
-%bcond_with	directconnect	# without Direct Connect support
+%bcond_with	directconnect	# with Direct Connect support (broken)
 %bcond_without	soulseek	# without Soulseek support
 %bcond_with	openft		# without OpenFT support	(broken)
 %bcond_with	cymes		# without Cymes support		(not in sources)
@@ -23,7 +23,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08
 Version:	2.5.28
-Release:	0.2
+Release:	0.4
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -316,7 +316,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,directconnect.ini,ed2k_links.txt,FAQ.html,Todo.txt}
-%config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
+%attr(640,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
 %attr(754,root,root) %{_initrddir}/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
 %attr(755,root,root) %{_bindir}/mlnet
