@@ -1,0 +1,21 @@
+diff -urN aaa/mldonkey-2.5-4/config/configure.in mldonkey-2.5-4/config/configure.in
+--- aaa/mldonkey-2.5-4/config/configure.in	2003-10-12 20:41:28.000000000 +0200
++++ mldonkey-2.5-4/config/configure.in	2003-12-23 23:42:50.000000000 +0100
+@@ -642,15 +642,8 @@
+         AC_MSG_RESULT(yes)
+ 
+         AC_MSG_CHECKING(GToolbox.popup_menu args)
+-        GTOOLBOX="`$OCAMLC -where`/lablgtk/gToolbox.mli"
+-        grep popup $GTOOLBOX | grep -i button 2> /dev/null && GTOOLBOX_ARGS=new
+-        if test "$GTOOLBOX_ARGS" = "new"; then
+-          GTOOLBOX_POPUPMENU=' ~button: button ~time: time '
+-          AC_MSG_RESULT(new)
+-        else
+-          GTOOLBOX_POPUPMENU=' ~x: button ~y: time '
+-          AC_MSG_RESULT(old)
+-        fi
++        GTOOLBOX_POPUPMENU=' ~button: button ~time: time '
++        AC_MSG_RESULT(new)
+   fi
+ 
+ case "`uname -s`" in
