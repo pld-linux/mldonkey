@@ -29,6 +29,7 @@ URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-lablgtk-devel
+BuildRequires:	ocaml-camlp4
 BuildRequires:	perl
 PreReq:		rc-scripts
 Requires(pre):	user-mldonkey
