@@ -14,29 +14,30 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
-%define	sub_ver		4
+%define	sub_ver		11
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
 Release:	1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.tar.gz
-# Source0-md5:	ef72a0c8e1337bfcce9f80f4a94dd927
+#Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
+Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
+# Source0-md5:	7d88005f7a14354f02fb0bbee0ad4f51
+
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
 Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
-Patch1:		%{name}-ocaml307.patch
-Patch2:		%{name}-gToolbox.patch
+Patch1:		%{name}-newgtk.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
-BuildRequires:	ocaml-lablgtk-devel >= 1.2.6
+BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
 BuildRequires:	perl-base
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
@@ -142,13 +143,12 @@ pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
 Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %prep
-%setup -q -n %{name}-%{main_ver}-%{sub_ver}
+%setup -q -n %{name}-%{main_ver}.%{sub_ver}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
-perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
+# perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
 cd config
 %{__autoconf}
 cd ..
@@ -247,7 +247,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc docs/* distrib/{AUTHORS,BUGS,ChangeLog,directconnect.ini,ed2k_links.txt,FAQ.html,TODO}
+%doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,directconnect.ini,ed2k_links.txt,FAQ.html,Todo.txt}
 %config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
 %attr(754,root,root) %{_initrddir}/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
