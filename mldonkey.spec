@@ -120,7 +120,7 @@ Summary:	This tool gives you an easy way to add a ed2k-link
 Summary(pl):	Narzêdzie pozwalaj±ce ³atwo dodaæ odno¶niki ed2k
 Group:		X11/Applications
 Requires:	kdebase
-Requires:	perl-libwww-perl
+Requires:	perl-libwww
 
 %description submit
 This tool gives you an easy way to add a ed2k-link (like
