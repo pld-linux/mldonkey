@@ -22,7 +22,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -132,7 +132,7 @@ wyszukiwaæ pliki w przyjemny sposób.
 Summary:	This tool gives you an easy way to add a ed2k-link
 Summary(pl):	Narzêdzie pozwalaj±ce ³atwo dodaæ odno¶niki ed2k
 Group:		X11/Applications
-Requires:	kdebase
+Requires:	kdelibs
 Requires:	perl-libwww
 
 %description submit
