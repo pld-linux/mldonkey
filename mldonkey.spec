@@ -287,12 +287,14 @@ else
 fi
 
 %post
-/sbin/chkconfig --add mldonkey
-touch /var/log/mldonkey.log
-chmod 000 /var/log/mldonkey.log
-chown mldonkey:mldonkey /var/log/mldonkey.log
-chmod 640 /var/log/mldonkey.log
+if [ ! -f /var/log/mldonkey.log ]; then
+	touch /var/log/mldonkey.log
+	chmod 000 /var/log/mldonkey.log
+	chown mldonkey:mldonkey /var/log/mldonkey.log
+	chmod 640 /var/log/mldonkey.log
+fi
 
+/sbin/chkconfig --add mldonkey
 if [ -f /var/lock/subsys/mldonkey ]; then
 	/etc/rc.d/init.d/mldonkey restart >&2
 else
