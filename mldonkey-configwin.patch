@@ -1,0 +1,16 @@
+--- mldonkey/src/gtk/configwin/configwin_ihm.ml~	Sun May 11 15:41:20 2003
++++ mldonkey/src/gtk/configwin/configwin_ihm.ml	Mon May 12 13:54:30 2003
+@@ -127,11 +127,11 @@
+   in
+   let wlist = match titles_opt with
+     None -> 
+-      GList.clist ~selection_mode: `EXTENDED 
++      GList.clist ~selection_mode: `MULTIPLE 
+ 	~titles_show: false
+ 	~packing: wscroll#add ()
+   | Some l -> 
+-      GList.clist ~selection_mode: `EXTENDED 
++      GList.clist ~selection_mode: `MULTIPLE 
+ 	~titles: l
+ 	~titles_show: true
+ 	~packing: wscroll#add ()
