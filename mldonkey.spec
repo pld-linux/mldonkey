@@ -23,7 +23,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08
 Version:	2.5.28
-Release:	0.4
+Release:	0.5
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -312,6 +312,9 @@ fi
 if [ -f /etc/sysconfig/mldonkey ]; then
 sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
 fi
+
+%triggerpostun -- mldonkey < 2.5.28-0.4
+chmod 640 /etc/sysconfig/mldonkey
 
 %files
 %defattr(644,root,root,755)
