@@ -12,12 +12,14 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.5
-Release:	1
+%define	main_ver	2.5
+%define	sub_ver		3
+Version:	%{main_ver}.%{sub_ver}
+Release:	2
 License:	GPL
 Group:		Applications/Networking
-# Source0-md5:	bd9866a1b42cff6022d2322b4d65158c
-Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{version}/official/%{name}-%{version}-0.sources.tar.gz
+Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.sources.tar.gz
+# Source0-md5:	d11504a6dd1e8b5f955951d1f73236ed
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -138,7 +140,7 @@ pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
 Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %prep
-%setup -q -n mldonkey
+%setup -q -n %{name}-%{main_ver}-%{sub_ver}
 %patch0 -p1
 
 %build
@@ -158,9 +160,8 @@ perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|'  distrib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir}} \
-	$RPM_BUILD_ROOT{%{_sysconfdir}/sysconfig,%{_pixmapsdir}} \
-	$RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_datadir}/services}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig} \
+	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Network/Misc,%{_datadir}/services}
 
 # core
 install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
@@ -180,8 +181,8 @@ install distrib/ed2k_submit/ed2k.protocol  $RPM_BUILD_ROOT%{_datadir}/services/e
 install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
-install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}
-install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
+install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
+install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -248,8 +249,8 @@ fi
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
-%{_pixmapsdir}/*
-%{_applnkdir}/Network/Misc/*
+%attr(755,root,root) %{_pixmapsdir}/*
+%attr(755,root,root) %{_applnkdir}/Network/Misc/*
 
 %files submit
 %defattr(644,root,root,755)
