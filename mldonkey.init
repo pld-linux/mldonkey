@@ -50,7 +50,7 @@ case "$1" in
   stop)
 	if [ -f /var/lock/subsys/mldonkey ]; then
 		msg_stopping mldonkey
-		killproc mldonkeyd
+		killproc mlnetd
 		sleep 1
 		rm -f /var/lock/subsys/mldonkey >/dev/null 2>&1
 	else
@@ -67,7 +67,7 @@ case "$1" in
 	rm ~mldonkey/*.tmp >/dev/null 2>&1
 	;;
   status)
-	status mldonkey
+	status mlnetd
 	exit $?
 	;;
   *)
