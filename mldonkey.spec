@@ -1,6 +1,5 @@
 # TODO
 #  - mldonkey_command req: nc (create subpackage? move to -utils?)
-#  - mldonkey_kill req: perl (our initscript does the same, kill the program?)
 #
 # Conditional build:
 %bcond_with 	audiogalaxy	# without Audio Galaxy support	(broken)
@@ -228,7 +227,6 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,/etc/rc.d/init.d,/etc/
 # core
 install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
 install distrib/mldonkey_command $RPM_BUILD_ROOT%{_bindir}/mldonkey_command
-install distrib/kill_mldonkey $RPM_BUILD_ROOT%{_bindir}/kill_mldonkey
 
 %if %{with gui}
 install mlgui $RPM_BUILD_ROOT%{_bindir}/mlgui
@@ -328,7 +326,6 @@ chmod 640 /etc/sysconfig/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
 %attr(755,root,root) %{_bindir}/mlnet
 %attr(755,root,root) %{_bindir}/mldonkey_command
-%attr(755,root,root) %{_bindir}/kill_mldonkey
 %attr(640,mldonkey,mldonkey) %ghost /var/log/mldonkey.log
 
 %if %{with gui}
