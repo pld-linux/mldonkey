@@ -12,11 +12,10 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-%define main_ver 2.5
-%define sub_ver 3
+%define	main_ver	2.5
+%define	sub_ver		3
 Version:	%{main_ver}.%{sub_ver}
 Release:	2
-# Epoch:		0
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.sources.tar.gz
@@ -26,7 +25,6 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
 Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
-# Source6:	%{name}-gui2.desktop
 Patch0:		%{name}-configwin.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
@@ -162,7 +160,8 @@ perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|'  distrib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig,%{_pixmapsdir},%{_applnkdir}/Network/Misc,%{_datadir}/services}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig} \
+	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Network/Misc,%{_datadir}/services}
 
 # core
 install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
@@ -184,7 +183,6 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
 install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
 install %{SOURCE5} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
-# install %{SOURCE6} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
