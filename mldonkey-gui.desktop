@@ -2,7 +2,7 @@
 Name=mlDonkey GUI
 Comment=mlDonkey graphical interface
 Comment[pl]=Graficzny interfejs do programu mlDonkey
-Exec=mldonkey_gui
+Exec=mlgui
 Icon=mldonkey.png
 Terminal=0
 Type=Application
