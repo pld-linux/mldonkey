@@ -35,7 +35,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
 BuildRequires:	ocaml-lablgtk-devel
-BuildRequires:	perl
+BuildRequires:	perl-base
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
