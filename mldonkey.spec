@@ -18,7 +18,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -32,6 +32,7 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
+Patch2:		%{name}-backchanges.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -160,6 +161,7 @@ make_torent, get_range.
 %setup -q -n %{name}-%{main_ver}.%{sub_ver}
 %patch0 -p1
 %patch1 -p1
+%patch2
 
 %build
 # perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
