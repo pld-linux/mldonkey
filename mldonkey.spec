@@ -288,8 +288,6 @@ fi
 if [ -f /var/lock/subsys/mldonkey ]; then
 	/etc/rc.d/init.d/mldonkey restart >&2
 else
-	cd ~mldonkey
-	mldonkeyd -exit > /dev/null 2>&1
 	echo "Run \"/etc/rc.d/init.d/mldonkey start\" to start mldonkey." >&2
 fi
 
