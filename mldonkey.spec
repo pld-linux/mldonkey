@@ -18,16 +18,16 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
-%define	sub_ver		21
+%define	sub_ver		22
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	5
+Release:	0.1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{main_ver}.%{sub_ver}.tar.gz
-# Source0-md5:	8a96738990f8ffc36eeb2c1f2f655826
+# Source0-md5:	958ffb63dbcfcb0f6e48788774dfbb42
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
