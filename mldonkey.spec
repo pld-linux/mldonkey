@@ -14,7 +14,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
 %define	sub_ver		4
-%define ocaml_ver	3.06
+%define ocaml_ver	3.07
 Version:	%{main_ver}.%{sub_ver}
 Release:	1
 License:	GPL
