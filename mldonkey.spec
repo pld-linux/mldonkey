@@ -14,6 +14,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
 %define	sub_ver		3
+%define ocaml_ver	3.07
 Version:	%{main_ver}.%{sub_ver}
 Release:	3
 License:	GPL
@@ -143,6 +144,7 @@ Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
 
 %configure2_13 \
+	--enable-ocamlver=%{ocaml_ver} \
 	%{?_without_audiogalaxy:--disable-audiogalaxy} \
 	%{?_without_opennap:--disable-opennap} \
 	%{?_without_limewire:--disable-limewire} \
