@@ -48,6 +48,7 @@ case "$1" in
                 killproc mldonkeyd
                 sleep 1
                 rm -f /var/lock/subsys/mldonkey >/dev/null 2>&1
+                rm ~mldonkey/*.tmp
         else
                 msg_not_running mldonkey
                 exit 1
