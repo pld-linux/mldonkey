@@ -18,6 +18,11 @@
 %undefine with_gui
 %endif
 
+#TODO
+# broken deps? mldonkey configure bug?
+# checking GToolbox.popup_menu args... grep: /usr/lib/ocaml/lablgtk/gToolbox.mli: No such file or directory
+# new
+# checking for bzip2... bzip2
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
@@ -26,7 +31,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	2.1
+Release:	2.3
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -60,6 +65,8 @@ Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(post,preun):	/sbin/chkconfig
 Requires(post):		sed >= 4.0
+Requires:	procps
+Requires:	wget
 Provides:	group(mldonkey)
 Provides:	user(mldonkey)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
