@@ -14,23 +14,23 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define	main_ver	2.5
-%define	sub_ver		4
+%define	sub_ver		4.20031228
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
 Release:	1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.tar.gz
-# Source0-md5:	ef72a0c8e1337bfcce9f80f4a94dd927
+#Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.tar.gz
+Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
+# Source0-md5:	dbfc006c94381dede1828fa40d00e332
+
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
 Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
-Patch1:		%{name}-ocaml307.patch
-Patch2:		%{name}-gToolbox.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	bzip2-devel
@@ -142,10 +142,8 @@ pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
 Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %prep
-%setup -q -n %{name}-%{main_ver}-%{sub_ver}
+%setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
