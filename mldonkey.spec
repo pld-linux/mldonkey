@@ -1,13 +1,14 @@
 #
 # Conditional build:
-# _without_audiogalaxy	- without Audio Galaxy support
-# _without_opennap	- without Open Napster support
-# _without_limewire	- without Gnutella LimeWire support
-# _without_directconnect- without Direct Connect support
-# _without_soulseek	- without Soulseek support
-# _without_openft	- without OpenFT support
-# _without_cymes	- without Cymes support
-# _without_donkey	- without eDonkey support
+%bcond_without 	audiogalaxy	# without Audio Galaxy support
+%bcond_without	opennap		# without Open Napster support
+%bcond_without	limewire	# without Gnutella LimeWire support
+%bcond_without	directconnect	# without Direct Connect support
+%bcond_without	soulseek	# without Soulseek support
+%bcond_without	openft	# without OpenFT support
+%bcond_without	cymes	# without Cymes support
+%bcond_without	donkey	# without eDonkey support
+%bcond_without	gui	# without mlgui
 #
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
@@ -148,14 +149,15 @@ perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/
 
 %configure2_13 \
 	--enable-ocamlver=%{ocaml_ver} \
-	%{?_without_audiogalaxy:--disable-audiogalaxy} \
-	%{?_without_opennap:--disable-opennap} \
-	%{?_without_limewire:--disable-limewire} \
-	%{?_without_directconnect:--disable-directconnect} \
-	%{?_without_soulseek:--disable-soulseek} \
-	%{?_without_openft:--disable-openft} \
-	%{?_without_cymes:--disable-cymes} \
-	%{?_without_donkey:--disable-donkey}
+	%{?!with_audiogalaxy:--disable-audiogalaxy} \
+	%{?!with_opennap:--disable-opennap} \
+	%{?!with_limewire:--disable-limewire} \
+	%{?!with_directconnect:--disable-directconnect} \
+	%{?!with_soulseek:--disable-soulseek} \
+	%{?!with_openft:--disable-openft} \
+	%{?!with_cymes:--disable-cymes} \
+	%{?!with_donkey:--disable-donkey} \
+	%{?!with_gui:--disable-gui}
 
 %{__make}
 
@@ -169,11 +171,13 @@ install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
 install distrib/mldonkey_command $RPM_BUILD_ROOT%{_bindir}/mldonkey_command
 install distrib/kill_mldonkey $RPM_BUILD_ROOT%{_bindir}/kill_mldonkey
 
+%if %{with gui}
 install mlgui $RPM_BUILD_ROOT%{_bindir}/mlgui
 install mlnet+gui $RPM_BUILD_ROOT%{_bindir}/mlnet+gui
 install mlguistarter $RPM_BUILD_ROOT%{_bindir}/mlguistarter
 install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
+%endif
 
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
@@ -182,8 +186,10 @@ install distrib/ed2k_submit/ed2k.protocol $RPM_BUILD_ROOT%{_datadir}/services/ed
 install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
+%if %{with gui}
 install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
 install %{SOURCE5} $RPM_BUILD_ROOT%{_desktopdir}/
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -243,6 +249,7 @@ fi
 %attr(755,root,root) %{_bindir}/mldonkey_command
 %attr(755,root,root) %{_bindir}/kill_mldonkey
 
+%if %{with gui}
 %files gui
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mlchat
@@ -252,6 +259,7 @@ fi
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
 %{_pixmapsdir}/*
 %{_desktopdir}/*
+%endif
 
 %files submit
 %defattr(644,root,root,755)
