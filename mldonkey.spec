@@ -247,8 +247,8 @@ fi
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
-%attr(755,root,root) %{_pixmapsdir}/*
-%attr(755,root,root) %{_applnkdir}/Network/Misc/*
+%{_pixmapsdir}/*
+%{_applnkdir}/Network/Misc/*
 
 %files submit
 %defattr(644,root,root,755)
