@@ -70,7 +70,7 @@ wonderful language, called Objective-Caml, and present most features
 of the basic Windows donkey client, plus some more:
   - It should work on most UNIX-compatible platforms.
   - You can remotely command your client, either by telnet, on a WEB
-    browser, or with the GTK interface.
+    browser, or with the GTK+ interface.
   - You can connect to several servers, and each search will query all
     the connected servers.
   - You can select mp3s by bitrates in queries (useful ?).
@@ -99,7 +99,7 @@ napisany w jêzyku Objective-Caml i ma wiêkszo¶æ cech podstawowego
 klienta windowsowego, a ponadto:
  - dzia³a na wiêkszo¶ci platform uniksowych,
  - pozwala zdalnie sterowaæ klientem przez interfejs telnet, WWW lub
-   GTK,
+   GTK+,
  - mo¿na ³±czyæ siê z kilkoma serwerami, wtedy ka¿de przeszukiwanie
    odpyta po³±czone serwery,
  - mo¿na wybieraæ pliki mp3 po bitrate w zapytaniach,
@@ -119,18 +119,18 @@ Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
  - OpenFT.
 
 %package gui
-Summary:	Graphical frontend for mldonkey based on GTK
-Summary(pl):	Graficzny interfejs u¿ytkownika GTK dla mldonkey
+Summary:	Graphical frontend for mldonkey based on GTK+
+Summary(pl):	Graficzny interfejs u¿ytkownika GTK+ dla mldonkey
 Group:		X11/Applications/Networking
 
 %description gui
-The GTK interface for mldonkey provides a convenient way of managing
+The GTK+ interface for mldonkey provides a convenient way of managing
 all mldonkey operations. It gives details about connected servers,
 downloaded files, friends and lets one search for files in a pleasing
 way.
 
 %description gui -l pl
-Interfejs u¿ytkownika GTK dla mldonkey daje wygodny sposób zarz±dzania
+Interfejs u¿ytkownika GTK+ dla mldonkey daje wygodny sposób zarz±dzania
 wszystkimi operacjami mldonkey. Udostêpnia szczegó³y dotycz±ce
 po³±czonych serwerów, ¶ci±ganych plików, znajomych oraz pozwala
 wyszukiwaæ pliki w przyjemny sposób.
