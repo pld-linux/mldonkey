@@ -1,0 +1,3 @@
+- updated to 2.5.18
+- use %configure not %configure2_13
+- added subconv (subtitles conversion tool)
