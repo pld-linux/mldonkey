@@ -38,8 +38,8 @@ case "$1" in
   start)
 	if [ ! -f /var/lock/subsys/mldonkey ]; then
 		msg_starting mldonkey
-		[ -z "$MLDONKEY_NICE" ] && MLDONKEY_NICE=0
-		daemon --user mldonkey "cd ~mldonkey && nice -n $MLDONKEY_NICE $MLDONKEY_PATH > /dev/null 2>&1 &"
+		[ -z "$SERVICE_RUN_NICE_LEVEL" ] && SERVICE_RUN_NICE_LEVEL="+0"
+		daemon --user mldonkey "cd ~mldonkey && nice -n $SERVICE_RUN_NICE_LEVEL $MLDONKEY_PATH > /dev/null 2>&1 &"
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/mldonkey
 	else

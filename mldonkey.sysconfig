@@ -1,4 +1,4 @@
 # $Id$
 
-MLDONKEY_NICE="+2"
+SERVICE_RUN_NICE_LEVEL="+2"
 MLDONKEY_PATH="/usr/bin/mlnetd"
