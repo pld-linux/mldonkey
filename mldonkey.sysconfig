@@ -2,7 +2,7 @@
 # Config file for mldonkey control script
 
 # nice level, 0<x<19, more nice -> less cpuspeed consumed
-SERVICE_RUN_NICE_LEVEL="+2"
+SERVICE_RUN_NICE_LEVEL="+10"
 
 # owner of mlnet process and current directory where service will be started.
 USER="mldonkey"
