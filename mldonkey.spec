@@ -62,6 +62,8 @@ Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(post,preun):	/sbin/chkconfig
 Requires(post):		sed >= 4.0
+Requires(triggerpostun):	sed >= 4.0
+Requires(triggerpostun):	grep
 Requires:	procps
 Requires:	wget
 Requires:	rc-scripts >= 0.4.0.10
@@ -316,10 +318,15 @@ if [ -f /etc/sysconfig/mldonkey ]; then
 fi
 
 %triggerpostun -- mldonkey < 2.5.22-2.3
-if [ -f /etc/sysconfig/mldonkey ]; then
+if [ -f /etc/sysconfig/mldonkey.rpmnew ]; then
 	# new sysconfig, with lots of vars
-# TODO
-#	sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
+	# we copy from old one just $SERVICE_RUN_NICE_LEVEL
+	a=$(grep ^SERVICE_RUN_NICE_LEVEL /etc/sysconfig/mldonkey)
+	if [ "$a" ]; then
+		sed -i -e "s/^SERVICE_RUN_NICE_LEVEL.*/$a/" /etc/sysconfig/mldonkey.rpmnew
+	fi
+	cp -f /etc/sysconfig/mldonkey{,.rpmsave}
+	mv -f /etc/sysconfig/mldonkey{.rpmnew,}
 fi
 
 %triggerpostun -- mldonkey < 2.5.28-0.4
