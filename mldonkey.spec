@@ -15,7 +15,7 @@ Name:		mldonkey
 %define	main_ver	2.5
 %define	sub_ver		3
 Version:	%{main_ver}.%{sub_ver}
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.sources.tar.gz
@@ -40,8 +40,6 @@ Requires(pre): /usr/sbin/useradd
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(post,preun):	/sbin/chkconfig
-Requires:	ocaml
-Requires:	ocaml-camlp4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -103,8 +101,6 @@ Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
 Summary:	Graphical frontend for mldonkey based on GTK
 Summary(pl):	Graficzny interfejs u¿ytkownika GTK dla mldonkey
 Group:		X11/Applications/Networking
-Requires:	gtk+
-Requires:	ocaml-lablgtk
 
 %description gui
 The GTK interface for mldonkey provides a convenient way of managing
