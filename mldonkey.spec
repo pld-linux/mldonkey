@@ -12,7 +12,7 @@
 %bcond_with	openft		# without OpenFT support	(broken)
 %bcond_with	cymes		# without Cymes support		(not in sources)
 %bcond_without	donkey		# without eDonkey support
-%bcond_with	bittorrent	# with BitTorrent support
+%bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# without mlgui
 
@@ -24,14 +24,14 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08
-Version:	2.5.29
-Release:	0.1
+Version:	2.5.28
+Release:	0.7
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{version}.tar.bz2
-# Source0-md5:	54ddc872229b6a54d7d13d5b3ffcdc37
+# Source0-md5:	bee2811a76f83c543ca19e45a9d04ff4
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -41,7 +41,7 @@ Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 Patch2:		%{name}-iconv-in-libc.patch
 Patch3:		%{name}-submit-case.patch
-#Patch4:		http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/patch_pack28h.gz
+Patch4:		http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/patch_pack28h.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -182,7 +182,7 @@ make_torent, get_range, copysource, subconv.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-#%patch4 -p1
+%patch4 -p1
 
 %build
 cd config
@@ -213,7 +213,7 @@ cd config
 	%{?with_openft:--en}%{!?with_openft:--dis}able-openft \
 	%{?with_cymes:--en}%{!?with_cymes:--dis}able-cymes \
 	%{?with_donkey:--en}%{!?with_donkey:--dis}able-donkey \
-	%{?with_bittorrent:--en}%{!?without_bittorrent:--dis}able-bittorrent \
+	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
 	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
 	%{?with_gui:--en}%{!?with_gui:--dis}able-gui
 
