@@ -8,5 +8,5 @@ Exec=mlgui
 Icon=mldonkey.png
 Terminal=false
 Type=Application
-Categories=GTK;Network;FileTransfer;P2P
+Categories=GTK;Network;FileTransfer;P2P;
 # vi: encoding=utf-8
