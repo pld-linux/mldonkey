@@ -222,7 +222,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig} \
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,/etc/rc.d/init.d,/etc/sysconfig} \
 	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_datadir}/services,/var/log}
 
 # core
@@ -248,11 +248,11 @@ install copysources $RPM_BUILD_ROOT%{_bindir}
 install subconv $RPM_BUILD_ROOT%{_bindir}
 
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
-install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
+install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT/etc/sysconfig/mldonkey_submit
 install distrib/ed2k_submit/ed2k.protocol $RPM_BUILD_ROOT%{_datadir}/services/ed2k.protocol
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/mldonkey
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
 %if %{with gui}
 install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -323,8 +323,8 @@ chmod 640 /etc/sysconfig/mldonkey
 %files
 %defattr(644,root,root,755)
 %doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,directconnect.ini,ed2k_links.txt,FAQ.html,Todo.txt}
-%attr(640,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/mldonkey
-%attr(754,root,root) %{_initrddir}/mldonkey
+%attr(640,root,root) %config(noreplace) /etc/sysconfig/mldonkey
+%attr(754,root,root) /etc/rc.d/init.d/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
 %attr(755,root,root) %{_bindir}/mlnet
 %attr(755,root,root) %{_bindir}/mldonkey_command
@@ -347,7 +347,7 @@ chmod 640 /etc/sysconfig/mldonkey
 
 %files submit
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/sysconfig/mldonkey_submit
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/mldonkey_submit
 %attr(755,root,root) %{_bindir}/mldonkey_submit
 %{_datadir}/services/ed2k.protocol
 
