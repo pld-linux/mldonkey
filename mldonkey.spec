@@ -16,7 +16,7 @@ Name:		mldonkey
 %define sub_ver 3
 Version:	%{main_ver}.%{sub_ver}
 Release:	1
-Epoch:		0
+# Epoch:		0
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://savannah.nongnu.org/download/mldonkey/release-%{main_ver}-%{sub_ver}/official/%{name}-%{main_ver}-%{sub_ver}.sources.tar.gz
@@ -142,7 +142,7 @@ pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
 Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %prep
-%setup -q -n mldonkey
+%setup -q -n %{name}-%{main_ver}-%{sub_ver}
 %patch0 -p1
 
 %build
