@@ -25,7 +25,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08
 Version:	2.5.28
-Release:	0.5
+Release:	0.7
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -61,7 +61,7 @@ Requires(pre):	/usr/sbin/useradd
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(post,preun):	/sbin/chkconfig
-Requires(post):		sed >= 4.0
+Requires(post):	sed >= 4.0
 Requires(triggerpostun):	sed >= 4.0
 Requires(triggerpostun):	grep
 Requires:	procps
@@ -113,8 +113,7 @@ klienta windowsowego, a ponadto:
  - mo¿na wybieraæ pliki MP3 po bitrate w zapytaniach,
  - mo¿na wybieraæ nazwê pliku do ¶ci±gniêcia przed przej¶ciem do
    katalogu incoming,
- - mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym
-   interfejsie,
+ - mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym interfejsie,
  - mo¿na zapamiêtaæ wyniki zapytañ w interfejsie z linii poleceñ,
  - mo¿na przeszukiwaæ historiê wszystkich plików widzianych w sieci.
 
@@ -138,10 +137,10 @@ downloaded files, friends and lets one search for files in a pleasing
 way.
 
 %description gui -l pl
-Interfejs u¿ytkownika GTK+ dla mldonkey daje wygodny sposób zarz±dzania
-wszystkimi operacjami mldonkey. Udostêpnia szczegó³y dotycz±ce
-po³±czonych serwerów, ¶ci±ganych plików, znajomych oraz pozwala
-wyszukiwaæ pliki w przyjemny sposób.
+Interfejs u¿ytkownika GTK+ dla mldonkey daje wygodny sposób
+zarz±dzania wszystkimi operacjami mldonkey. Udostêpnia szczegó³y
+dotycz±ce po³±czonych serwerów, ¶ci±ganych plików, znajomych oraz
+pozwala wyszukiwaæ pliki w przyjemny sposób.
 
 %package submit
 Summary:	This tool gives you an easy way to add a ed2k-link
