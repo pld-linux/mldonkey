@@ -15,7 +15,7 @@ Name:		mldonkey
 %define main_ver 2.5
 %define sub_ver 3
 Version:	%{main_ver}.%{sub_ver}
-Release:	1
+Release:	2
 # Epoch:		0
 License:	GPL
 Group:		Applications/Networking
