@@ -29,16 +29,16 @@ Patch0:		%{name}-configwin.patch
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
-BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	ocaml-camlp4
+BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	perl
 PreReq:		rc-scripts
 Requires(pre): /bin/id
 Requires(pre): /usr/bin/getgid
 Requires(pre): /usr/sbin/groupadd
 Requires(pre): /usr/sbin/useradd
-Requires(postun):      /usr/sbin/groupdel
-Requires(postun):      /usr/sbin/userdel
+Requires(postun):	/usr/sbin/groupdel
+Requires(postun):	/usr/sbin/userdel
 Requires(post,preun):	/sbin/chkconfig
 Requires:	ocaml
 Requires:	ocaml-camlp4
@@ -144,7 +144,7 @@ Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 %patch0 -p1
 
 %build
-perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|'  distrib/ed2k_submit/mldonkey_submit
+perl -pi -e 's|/etc/sysconfig/mldonkey|/etc/sysconfig/mldonkey_submit|' distrib/ed2k_submit/mldonkey_submit
 
 %configure2_13 \
 	%{?_without_audiogalaxy:--disable-audiogalaxy} \
@@ -176,7 +176,7 @@ install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
-install distrib/ed2k_submit/ed2k.protocol  $RPM_BUILD_ROOT%{_datadir}/services/ed2k.protocol
+install distrib/ed2k_submit/ed2k.protocol $RPM_BUILD_ROOT%{_datadir}/services/ed2k.protocol
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
@@ -189,47 +189,47 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`getgid mldonkey`" ]; then
-        if [ "`getgid mldonkey`" != "33" ]; then
-                echo "Error: group mldonkey doesn't have gid=33. Correct this before installing mldonkey." 1>&2
-                exit 1
-        fi
+	if [ "`getgid mldonkey`" != "33" ]; then
+		echo "Error: group mldonkey doesn't have gid=33. Correct this before installing mldonkey." 1>&2
+		exit 1
+	fi
 else
-        /usr/sbin/groupadd -g 33 -r -f mldonkey
+	/usr/sbin/groupadd -g 33 -r -f mldonkey
 fi
 
 if [ -n "`id -u mldonkey 2>/dev/null`" ]; then
-        if [ "`id -u mldonkey`" != "47" ]; then
-                echo "Error: user mldonkey doesn't have uid=47. Correct this before installing mldonkey." 1>&2
-                exit 1
-        fi
+	if [ "`id -u mldonkey`" != "47" ]; then
+		echo "Error: user mldonkey doesn't have uid=47. Correct this before installing mldonkey." 1>&2
+		exit 1
+	fi
 else
-        /usr/sbin/useradd -m -o -r -u 47 \
-                        -d /home/services/mldonkey -s /bin/sh -g mldonkey \
-                        -c "mldonkey" mldonkey 1>&2
+	/usr/sbin/useradd -m -o -r -u 47 \
+		-d /home/services/mldonkey -s /bin/sh -g mldonkey \
+		-c "mldonkey" mldonkey 1>&2
 fi
 
 %post
 /sbin/chkconfig --add mldonkey
 if [ -f /var/lock/subsys/mldonkey ]; then
-        /etc/rc.d/init.d/mldonkey restart >&2
+	/etc/rc.d/init.d/mldonkey restart >&2
 else
 	cd ~mldonkey
 	mldonkeyd -exit > /dev/null 2>&1
-        echo "Run \"/etc/rc.d/init.d/mldonkey start\" to start mldonkey." >&2
+	echo "Run \"/etc/rc.d/init.d/mldonkey start\" to start mldonkey." >&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/mldonkey ]; then
-                /etc/rc.d/init.d/mldonkey stop
-        fi
-        /sbin/chkconfig --del mldonkey
+	if [ -f /var/lock/subsys/mldonkey ]; then
+		/etc/rc.d/init.d/mldonkey stop
+	fi
+	/sbin/chkconfig --del mldonkey
 fi
 
 %postun
 if [ "$1" = "0" ]; then
-        /usr/sbin/userdel mldonkey
-        /usr/sbin/groupdel mldonkey
+	/usr/sbin/userdel mldonkey
+	/usr/sbin/groupdel mldonkey
 fi
 
 %files
@@ -249,8 +249,8 @@ fi
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
-%attr(755,root,root) %{_pixmapsdir}/*
-%attr(755,root,root) %{_applnkdir}/Network/Misc/*
+%{_pixmapsdir}/*
+%{_applnkdir}/Network/Misc/*
 
 %files submit
 %defattr(644,root,root,755)
