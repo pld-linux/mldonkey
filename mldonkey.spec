@@ -5,10 +5,10 @@
 %bcond_without	limewire	# without Gnutella LimeWire support
 %bcond_without	directconnect	# without Direct Connect support
 %bcond_without	soulseek	# without Soulseek support
-%bcond_without	openft	# without OpenFT support
-%bcond_without	cymes	# without Cymes support
-%bcond_without	donkey	# without eDonkey support
-%bcond_without	gui	# without mlgui
+%bcond_without	openft		# without OpenFT support
+%bcond_without	cymes		# without Cymes support
+%bcond_without	donkey		# without eDonkey support
+%bcond_without	gui		# without mlgui
 #
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
@@ -145,16 +145,16 @@ Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %package utils
 Summary:	Misc utils for mldonkey
-Summary(pl):	Ró¿ne narzêdzia dla mldonkey
+Summary(pl):	Ró¿ne narzêdzia dla mldonkeya
 Group:		Applications/Networking
 
 %description utils
-This package includes misc utils for mldonkey eg.:
-ed2k_hash, make_torent, get_range
+This package includes misc utils for mldonkey eg.: ed2k_hash,
+make_torent, get_range.
 
 %description utils -l pl
-Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkey-a:
-ed2k_hash, make_torent, get_range
+Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: ed2k_hash,
+make_torent, get_range.
 
 %prep
 %setup -q -n %{name}-%(echo %{main_ver}|tr . -)-%{sub_ver}
@@ -166,7 +166,7 @@ ed2k_hash, make_torent, get_range
 cd config
 %{__autoconf}
 cd ..
-cp -f /usr/share/automake/config.sub src/applets/kde/admin/
+cp -f /usr/share/automake/config.sub src/applets/kde/admin
 cp -f /usr/share/automake/config.sub config
 
 %configure2_13 \
@@ -217,8 +217,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/mldonkey
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey
 install %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/mlnet
 %if %{with gui}
-install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}/
-install %{SOURCE5} $RPM_BUILD_ROOT%{_desktopdir}/
+install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE5} $RPM_BUILD_ROOT%{_desktopdir}
 %endif
 
 %clean
