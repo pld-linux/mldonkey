@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_with 	audiogalaxy	# without Audio Galaxy support	(broken)
-%bcond_without	opennap		# without Open Napster support
+%bcond_with	opennap		# without Open Napster support	(broken)
 %bcond_without	gnutella	# without Gnutella LimeWire support
 %bcond_without	gnutella2	# without Gnutella2 support
 %bcond_without	fasttrack	# without FastTrack support
