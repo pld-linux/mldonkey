@@ -41,10 +41,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	gtk+-devel
+BuildRequires:  ncurses-devel
 BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}%{ocaml_rel}
 BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
 BuildRequires:	perl-base
-BuildRequires:	ncurses-devel
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
@@ -85,7 +85,7 @@ It can also access other peer-to-peer networks:
 
 %description -l pl
 mldonkey jest nowym klientem do eDonkey 2000, zdecentralizowanej sieci
-peer-to-peer bardzo wydajnej przy przesy³aniu du¿ych plików dzieki
+peer-to-peer bardzo wydajnej przy przesy³aniu du¿ych plików dziêki
 protoko³owi pobierania danych z wielu ¼róde³. Klient ten zosta³
 napisany w jêzyku Objective-Caml i ma wiêkszo¶æ cech podstawowego
 klienta windowsowego, a ponadto:
