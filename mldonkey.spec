@@ -18,7 +18,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -142,6 +142,15 @@ pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
 
 Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
+%package utils
+Summary:	Misc utils for mldonkey
+Summary(pl):	Ró¿ne narzêdzia dla mldonkey
+Group:		Applications/Networking
+
+%description utils
+This package includes misc utils for mldonkey eg.:
+ed2k_hash, make_torent, get_range
+
 %prep
 %setup -q -n %{name}-%{main_ver}.%{sub_ver}
 %patch0 -p1
@@ -165,7 +174,7 @@ cd ..
 	%{?!with_donkey:--disable-donkey} \
 	%{?!with_gui:--disable-gui}
 
-%{__make}
+%{__make} opt utils
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -182,8 +191,16 @@ install mlgui $RPM_BUILD_ROOT%{_bindir}/mlgui
 install mlnet+gui $RPM_BUILD_ROOT%{_bindir}/mlnet+gui
 install mlguistarter $RPM_BUILD_ROOT%{_bindir}/mlguistarter
 install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
+install mlim $RPM_BUILD_ROOT%{_bindir}/mlim
+install mlprogress $RPM_BUILD_ROOT%{_bindir}/mlprogress
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 %endif
+
+# util
+install make_torrent $RPM_BUILD_ROOT%{_bindir}
+install get_range $RPM_BUILD_ROOT%{_bindir}
+install ed2k_hash $RPM_BUILD_ROOT%{_bindir}
+install copysources $RPM_BUILD_ROOT%{_bindir}
 
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/mldonkey_submit
@@ -259,7 +276,9 @@ fi
 %files gui
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mlchat
+%attr(755,root,root) %{_bindir}/mlim
 %attr(755,root,root) %{_bindir}/mlgui
+%attr(755,root,root) %{_bindir}/mlprogress
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
@@ -272,3 +291,10 @@ fi
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/sysconfig/mldonkey_submit
 %attr(755,root,root) %{_bindir}/mldonkey_submit
 %{_datadir}/services/ed2k.protocol
+
+%files utils
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/get_range
+%attr(755,root,root) %{_bindir}/copysources
+%attr(755,root,root) %{_bindir}/make_torrent
+%attr(755,root,root) %{_bindir}/ed2k_hash
