@@ -31,7 +31,7 @@ Name:		mldonkey
 %define ocaml_ver	3.07
 %define ocaml_rel	-1
 Version:	%{main_ver}.%{sub_ver}
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -224,7 +224,7 @@ cd ..
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,%{_initrddir},%{_sysconfdir}/sysconfig} \
-	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_datadir}/services}
+	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_datadir}/services,/var/log}
 
 # core
 install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
@@ -260,6 +260,8 @@ install %{SOURCE4} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE5} $RPM_BUILD_ROOT%{_desktopdir}
 %endif
 
+> $RPM_BUILD_ROOT/var/log/mldonkey.log
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -286,6 +288,11 @@ fi
 
 %post
 /sbin/chkconfig --add mldonkey
+touch /var/log/mldonkey.log
+chmod 000 /var/log/mldonkey.log
+chown mldonkey:mldonkey /var/log/mldonkey.log
+chmod 640 /var/log/mldonkey.log
+
 if [ -f /var/lock/subsys/mldonkey ]; then
 	/etc/rc.d/init.d/mldonkey restart >&2
 else
@@ -320,6 +327,7 @@ fi
 %attr(755,root,root) %{_bindir}/mlnet
 %attr(755,root,root) %{_bindir}/mldonkey_command
 %attr(755,root,root) %{_bindir}/kill_mldonkey
+%attr(640,mldonkey,mldonkey) %ghost /var/log/mldonkey.log
 
 %if %{with gui}
 %files gui
