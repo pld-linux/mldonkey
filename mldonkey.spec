@@ -73,7 +73,7 @@ of the basic Windows donkey client, plus some more:
     browser, or with the GTK+ interface.
   - You can connect to several servers, and each search will query all
     the connected servers.
-  - You can select mp3s by bitrates in queries (useful ?).
+  - You can select MP3s by bitrates in queries (useful ?).
   - You can select the name of a downloaded file before moving it to
     your incoming directory.
   - You can have several queries in the graphical user interface at the
@@ -102,7 +102,7 @@ klienta windowsowego, a ponadto:
    GTK+,
  - mo¿na ³±czyæ siê z kilkoma serwerami, wtedy ka¿de przeszukiwanie
    odpyta po³±czone serwery,
- - mo¿na wybieraæ pliki mp3 po bitrate w zapytaniach,
+ - mo¿na wybieraæ pliki MP3 po bitrate w zapytaniach,
  - mo¿na wybieraæ nazwê pliku do ¶ci±gniêcia przed przej¶ciem do
    katalogu incoming,
  - mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym
