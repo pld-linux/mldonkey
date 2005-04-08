@@ -125,7 +125,8 @@ case "$1" in
 	;;
   stop)
 	if [ -f /var/lock/subsys/mldonkey ]; then
-		stop
+	$0 $clean
+	$0 $stop
 	else
 		msg_not_running mldonkey
 	fi
