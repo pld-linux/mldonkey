@@ -36,7 +36,7 @@ Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 #Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
-Source0:	http://savannah.nongnu.org/download/mldonkey/mldonkey-2.5.30-4.tar.bz2
+Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-2.5.30-4.tar.bz2
 # Source0-md5:	02097ea0612fc5924e9f4412ce4d00d2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
