@@ -27,7 +27,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08.2
 %define patch_pack	c
-%define real_ver	2.5.30.3
+%define real_ver	2.5.30.4
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
 Release:	1
@@ -36,8 +36,8 @@ Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 #Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
-Source0:	http://savannah.nongnu.org/download/mldonkey/mldonkey-2.5.30-3.tar.bz2
-# Source0-md5:	d32ae0ef363868b442ed9bb98ecd4777
+Source0:	http://savannah.nongnu.org/download/mldonkey/mldonkey-2.5.30-4.tar.bz2
+# Source0-md5:	02097ea0612fc5924e9f4412ce4d00d2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -185,7 +185,7 @@ make_torent, get_range, copysource, subconv.
 
 %prep
 #%setup -q -n %{name}-%{real_ver}
-%setup -q -n %{name}-2.5.30-3
+%setup -q -n %{name}-2.5.30-4
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
