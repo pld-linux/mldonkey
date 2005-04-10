@@ -30,7 +30,7 @@ Name:		mldonkey
 %define real_ver	2.5.30.4
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
