@@ -52,7 +52,7 @@ URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-BuildRequires:	gtk+-devel
+%{?with_gui:BuildRequires:	gtk+-devel}
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
