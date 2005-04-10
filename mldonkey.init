@@ -118,8 +118,7 @@ RETVAL=0
 case "$1" in
   start)
 	if [ ! -f /var/lock/subsys/mldonkey ]; then
-		$0 start && sleep 10
-                rm ~mldonkey/*.tmp >/dev/null 2>&1
+		start
 	else
 		msg_already_running mldonkey
 	fi
