@@ -45,8 +45,7 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
-Patch2:		%{name}-iconv-in-libc.patch
-Patch3:		%{name}-submit-case.patch
+Patch2:		%{name}-submit-case.patch
 # PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
 #Patch4:		%{name}-patch_pack30%{patch_pack}.gz
 URL:		http://www.nongnu.org/mldonkey/
@@ -189,7 +188,6 @@ make_torent, get_range, copysource, subconv.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 #%patch4 -p1
 
 %build
