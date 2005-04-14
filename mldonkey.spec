@@ -4,15 +4,15 @@
 #  - 2.5.28.1 trashes my /tmp with {peers,motd,servers}* ($TMPDIR?)
 #
 # Conditional build:
-%bcond_with 	audiogalaxy	# without Audio Galaxy support	(broken)
-%bcond_with	opennap		# without Open Napster support	(broken)
+%bcond_without	audiogalaxy	# without Audio Galaxy support
+%bcond_without	opennap		# without Open Napster support
 %bcond_without	gnutella	# without Gnutella LimeWire support
 %bcond_without	gnutella2	# without Gnutella2 support
 %bcond_without	fasttrack	# without FastTrack support
-%bcond_without	directconnect	# with Direct Connect support (broken)
+%bcond_without	directconnect	# with Direct Connect support
 %bcond_without	soulseek	# without Soulseek support
 %bcond_with	openft		# without OpenFT support	(broken)
-%bcond_without	cymes		# without Cymes support		(not in sources)
+%bcond_without	cymes		# without Cymes support		
 %bcond_without	donkey		# without eDonkey support
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
@@ -30,13 +30,13 @@ Name:		mldonkey
 %define real_ver	2.5.30.5
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 #Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
-Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-2.5.30.5.tar.bz2
+Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{real_ver}.tar.bz2
 # Source0-md5:	7645dfe8ef15403358ad8cdee49896e1
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
