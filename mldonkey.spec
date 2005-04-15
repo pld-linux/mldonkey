@@ -12,7 +12,7 @@
 %bcond_without	directconnect	# with Direct Connect support
 %bcond_without	soulseek	# without Soulseek support
 %bcond_with	openft		# without OpenFT support	(broken)
-%bcond_without	cymes		# without Cymes support		
+%bcond_without	cymes		# without Cymes support
 %bcond_without	donkey		# without eDonkey support
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
@@ -36,7 +36,7 @@ Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 #Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
-Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{real_ver}.tar.bz2
+Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.bz2
 # Source0-md5:	7645dfe8ef15403358ad8cdee49896e1
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
