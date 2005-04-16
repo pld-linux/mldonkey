@@ -30,7 +30,7 @@ Name:		mldonkey
 %define real_ver	2.5.30.5
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -46,6 +46,7 @@ Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 Patch2:		%{name}-submit-case.patch
+#Patch3:		%{name}-newocaml.patch
 # PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
 #Patch4:		%{name}-patch_pack30%{patch_pack}.gz
 URL:		http://www.nongnu.org/mldonkey/
@@ -188,6 +189,7 @@ make_torent, get_range, copysource, subconv.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+#%patch3 -p1
 #%patch4 -p1
 
 %build
@@ -221,7 +223,8 @@ cd config
 	%{?with_donkey:--en}%{!?with_donkey:--dis}able-donkey \
 	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
 	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
-	%{?with_gui:--en}%{!?with_gui:--dis}able-gui
+	%{?with_gui:--en}%{!?with_gui:--dis}able-gui \
+	--enable-ocamlver=3.08.3
 
 cd ..
 %{__make} opt utils
