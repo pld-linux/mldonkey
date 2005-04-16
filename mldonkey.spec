@@ -25,7 +25,7 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-%define ocaml_ver	3.08.2
+%define ocaml_ver	3.08.3
 #%define patch_pack	c
 %define real_ver	2.5.30.5
 #Version:	%{real_ver}%{patch_pack}
@@ -224,7 +224,6 @@ cd config
 	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
 	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
 	%{?with_gui:--en}%{!?with_gui:--dis}able-gui \
-	--enable-ocamlver=3.08.3
 
 cd ..
 %{__make} opt utils
