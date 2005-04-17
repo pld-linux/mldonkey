@@ -223,7 +223,7 @@ cd config
 	%{?with_donkey:--en}%{!?with_donkey:--dis}able-donkey \
 	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
 	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
-	%{?with_gui:--en}%{!?with_gui:--dis}able-gui \
+	%{?with_gui:--en}%{!?with_gui:--dis}able-gui
 
 cd ..
 %{__make} opt utils
