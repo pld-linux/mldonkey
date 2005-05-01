@@ -58,7 +58,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
 BuildRequires:	perl-base
-BuildRequires:	rpmbuild(macros) >= 1.159
+BuildRequires:	rpmbuild(macros) >= 1.202
 BuildRequires:	zlib-devel
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
@@ -272,25 +272,8 @@ install %{SOURCE5} $RPM_BUILD_ROOT%{_desktopdir}
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-if [ -n "`/usr/bin/getgid mldonkey`" ]; then
-	if [ "`/usr/bin/getgid mldonkey`" != "33" ]; then
-		echo "Error: group mldonkey doesn't have gid=33. Correct this before installing mldonkey." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/groupadd -g 33 mldonkey
-fi
-
-if [ -n "`/bin/id -u mldonkey 2>/dev/null`" ]; then
-	if [ "`/bin/id -u mldonkey`" != "47" ]; then
-		echo "Error: user mldonkey doesn't have uid=47. Correct this before installing mldonkey." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/useradd -m -u 47 \
-		-d /home/services/mldonkey -s /bin/sh -g mldonkey \
-		-c "mldonkey" mldonkey 1>&2
-fi
+%groupadd -g 33 mldonkey
+%useradd -m -u 47 -d /home/services/mldonkey -s /bin/sh -g mldonkey -c "mldonkey" mldonkey
 
 %post
 if [ ! -f /var/log/mldonkey.log ]; then
