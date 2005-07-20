@@ -56,7 +56,7 @@ BuildRequires:	bzip2-devel
 %{?with_gui:BuildRequires:	gtk+-devel}
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
-BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6
+%{?with_gui:BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6}
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.202
 BuildRequires:	zlib-devel
