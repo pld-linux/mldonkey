@@ -1,0 +1,2 @@
+- updated to 2.6.1
+- changed bcond to without gui by default (because changes in this version)
