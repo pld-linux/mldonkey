@@ -16,7 +16,7 @@
 %bcond_without	donkey		# without eDonkey support
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
-%bcond_with	gui		# without mlgui
+%bcond_with	gui		# with mlgui
 
 %ifarch alpha
 %undefine with_gui
