@@ -16,7 +16,7 @@
 %bcond_without	donkey		# without eDonkey support
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
-%bcond_without	gui		# without mlgui
+%bcond_with	gui		# without mlgui
 
 %ifarch alpha
 %undefine with_gui
@@ -27,7 +27,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08.3
 #%define patch_pack	c
-%define real_ver	2.6.0
+%define real_ver	2.6.1
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
 Release:	1
@@ -37,7 +37,7 @@ Group:		Applications/Networking
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 #Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
 Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	3d9aff8eb7d44240950475ea1499ae75
+# Source0-md5:	193c397a0cb22391275054cebfaa5d8a
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
