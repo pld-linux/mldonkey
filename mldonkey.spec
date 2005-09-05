@@ -25,7 +25,7 @@ Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 %define ocaml_ver	3.08.4
 #%define patch_pack	c
-%define real_ver	2.6.3
+%define real_ver	2.6.4
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
 Release:	1
@@ -35,7 +35,7 @@ Group:		Applications/Networking
 #Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
 #Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
 Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	5a71317970b0c5c2a50d3d4e98c14f41
+# Source0-md5:	d969f81b51e194fcaf46790686269e3e
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -175,12 +175,12 @@ Summary(pl):	Ró¿ne narzêdzia dla mldonkeya
 Group:		Applications/Networking
 
 %description utils
-This package includes misc utils for mldonkey eg.: ed2k_hash,
-make_torent, get_range, copysource, subconv.
+This package includes misc utils for mldonkey eg.: mld_hash,
+make_torent, get_range, copysource, subconv, svg_converter.
 
 %description utils -l pl
-Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: ed2k_hash,
-make_torent, get_range, copysource, subconv.
+Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: mld_hash,
+make_torent, get_range, copysource, subconv, svg_converter.
 
 %prep
 #%setup -q -n %{name}-%{real_ver}
@@ -249,9 +249,10 @@ install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 # util
 install make_torrent $RPM_BUILD_ROOT%{_bindir}
 install get_range $RPM_BUILD_ROOT%{_bindir}
-install ed2k_hash $RPM_BUILD_ROOT%{_bindir}
+install mld_hash $RPM_BUILD_ROOT%{_bindir}
 install copysources $RPM_BUILD_ROOT%{_bindir}
 install subconv $RPM_BUILD_ROOT%{_bindir}
+install svg_converter $RPM_BUILD_ROOT%{_bindir}
 
 install distrib/ed2k_submit/mldonkey_submit $RPM_BUILD_ROOT%{_bindir}/mldonkey_submit
 install distrib/ed2k_submit/mldonkey $RPM_BUILD_ROOT/etc/sysconfig/mldonkey_submit
@@ -358,5 +359,6 @@ chmod 640 /etc/sysconfig/mldonkey
 %attr(755,root,root) %{_bindir}/get_range
 %attr(755,root,root) %{_bindir}/copysources
 %attr(755,root,root) %{_bindir}/make_torrent
-%attr(755,root,root) %{_bindir}/ed2k_hash
+%attr(755,root,root) %{_bindir}/mld_hash
 %attr(755,root,root) %{_bindir}/subconv
+%attr(755,root,root) %{_bindir}/svg_converter
