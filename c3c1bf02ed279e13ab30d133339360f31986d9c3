@@ -1,0 +1,2 @@
+- reverted last change, there's written mldonkey admin
+  username/password, and password is considered secret in common sense
