@@ -327,7 +327,7 @@ chmod 640 /etc/sysconfig/mldonkey
 %files
 %defattr(644,root,root,755)
 %doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,ed2k_links.txt,FAQ.html,Todo.txt}
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/mldonkey
+%attr(640,mldonkey,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/mldonkey
 %attr(754,root,root) /etc/rc.d/init.d/mldonkey
 %attr(755,root,root) %{_bindir}/mlnetd
 %attr(755,root,root) %{_bindir}/mlnet
