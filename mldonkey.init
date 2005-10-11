@@ -33,6 +33,7 @@ if [ -f /etc/sysconfig/mldonkey ]; then
 	. /etc/sysconfig/mldonkey
 fi
 
+MLDONKEY_PATH=/usr/sbin/mlnetd
 PROG=$(basename "$MLDONKEY_PATH")
 
 getpids() {

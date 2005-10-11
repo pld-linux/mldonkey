@@ -12,8 +12,6 @@ USER="mldonkey"
 # empty to disable.
 LOG="/var/log/mldonkey.log"
 
-MLDONKEY_PATH="/usr/bin/mlnetd"
-
 # mldonkey server ip, usually localhost
 SERVER="localhost"
 
