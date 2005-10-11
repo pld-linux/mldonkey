@@ -2,8 +2,8 @@
 set -e
 
 if [ ! -d ~/.mldonkey ]; then
-	echo "Creating $HOME/.mldonkey"
-	mkdir $HOME/.mldonkey
+	echo "Creating ~/.mldonkey"
+	mkdir ~/.mldonkey
 fi
 
 cd ~/.mldonkey && exec /usr/sbin/mlnetd
