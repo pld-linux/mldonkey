@@ -28,7 +28,7 @@ Name:		mldonkey
 %define real_ver	2.6.4
 #Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -229,11 +229,11 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/mldonkey,/etc/rc.d/init.d,/etc/sysconfig} \
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir}/mldonkey,/etc/rc.d/init.d,/etc/sysconfig} \
 	$RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_datadir}/services,/var/log}
 
 # core
-install mlnet $RPM_BUILD_ROOT%{_bindir}/mlnetd
+install mlnet $RPM_BUILD_ROOT%{_sbindir}/mlnetd
 install distrib/mldonkey_command $RPM_BUILD_ROOT%{_bindir}/mldonkey_command
 
 %if %{with gui}
@@ -329,9 +329,9 @@ chmod 640 /etc/sysconfig/mldonkey
 %doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,ed2k_links.txt,FAQ.html,Todo.txt}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/mldonkey
 %attr(754,root,root) /etc/rc.d/init.d/mldonkey
-%attr(755,root,root) %{_bindir}/mlnetd
 %attr(755,root,root) %{_bindir}/mlnet
 %attr(755,root,root) %{_bindir}/mldonkey_command
+%attr(755,root,root) %{_sbindir}/mlnetd
 %attr(640,mldonkey,mldonkey) %ghost /var/log/mldonkey.log
 
 %if %{with gui}
