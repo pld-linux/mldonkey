@@ -6,4 +6,4 @@ if [ ! -d ~/.mldonkey ]; then
 	mkdir $HOME/.mldonkey
 fi
 
-cd ~/.mldonkey && exec /usr/bin/mlnetd
+cd ~/.mldonkey && exec /usr/sbin/mlnetd
