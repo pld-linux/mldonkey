@@ -9,5 +9,4 @@ if [ ! -d ~/.mldonkey ]; then
 	 mkdir $HOME/.mldonkey
    fi
 
-cd ~/.mldonkey && exec $MLDONKEY_PATH
-
+cd ~/.mldonkey && exec /usr/bin/mlnetd
