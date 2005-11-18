@@ -1,10 +1,11 @@
---- mldonkey/config/configure.in.wiget	Wed Dec 17 15:29:27 2003
-+++ mldonkey/config/configure.in	Tue Jan 27 19:05:37 2004
-@@ -685,6 +685,7 @@
-         GTOOLBOX="`$OCAMLC -where`/lablgtk/gToolbox.mli"
- 	fi
-         grep popup $GTOOLBOX | grep -i button 2> /dev/null && GTOOLBOX_ARGS=new
-+		GTOOLBOX_ARGS=new
-         if test "$GTOOLBOX_ARGS" = "new"; then
-           GTOOLBOX_POPUPMENU=' ~button: button ~time: time '
-           AC_MSG_RESULT(new)
+diff -ur mldonkey-2.6.7/config/configure.in mldonkey-2.6.7.new/config/configure.in
+--- mldonkey-2.6.7/config/configure.in	2005-10-28 09:04:17.000000000 +0000
++++ mldonkey-2.6.7.new/config/configure.in	2005-11-18 21:04:58.900597000 +0000
+@@ -962,6 +962,7 @@
+   OCAML_LIB_DIR="`$OCAMLC -where`"
+   GTOOLBOX="$OCAML_LIB_DIR/$LABLGTK_NAME/gToolbox.mli"
+   grep popup $GTOOLBOX | grep -i button 2> /dev/null && GTOOLBOX_ARGS=new
++	GTOOLBOX_ARGS=new
+   if test "$GTOOLBOX_ARGS" = "new"; then
+     GTOOLBOX_POPUPMENU=' ~button: button ~time: time '
+     AC_MSG_RESULT(new)
