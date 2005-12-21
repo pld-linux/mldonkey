@@ -1,5 +1,6 @@
 # TODO
 #  - it creates file: .mldonkey/mlnet_strings.C
+#  - mlnetd crashes on sparc (ca 15 minutes afrer start)
 #
 # Conditional build:
 %bcond_without	audiogalaxy	# without Audio Galaxy support
