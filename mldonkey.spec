@@ -44,7 +44,6 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
-Patch2:		%{name}-submit-case.patch
 #Patch3:		%{name}-newocaml.patch
 # PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
 #Patch4:		%{name}-patch_pack30%{patch_pack}.gz
@@ -188,7 +187,6 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 #%patch3 -p1
 #%patch4 -p1
 
