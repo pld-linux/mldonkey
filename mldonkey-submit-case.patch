@@ -1,11 +1,12 @@
---- mldonkey-2.5.28/distrib/ed2k_submit/mldonkey_submit~	2003-03-03 23:03:34.000000000 +0200
-+++ mldonkey-2.5.28/distrib/ed2k_submit/mldonkey_submit	2005-01-24 00:36:35.000000000 +0200
+diff -ur mldonkey-2.7.3/distrib/ed2k_submit/mldonkey_submit mldonkey-2.7.3.new/distrib/ed2k_submit/mldonkey_submit
+--- mldonkey-2.7.3/distrib/ed2k_submit/mldonkey_submit	2006-01-03 18:39:57.000000000 +0000
++++ mldonkey-2.7.3.new/distrib/ed2k_submit/mldonkey_submit	2006-01-22 19:30:07.000000000 +0000
 @@ -46,7 +46,7 @@
  
  while (my $uri = shift @ARGV) {
  	$_ = URI::Escape::uri_unescape($uri);
--	if (/^ed2k:\/\/\|file\|[^|]+\|(\d+)\|([\dabcdef]+)\|/) {
-+	if (/^ed2k:\/\/\|file\|[^|]+\|(\d+)\|([\dabcdef]+)\|/i) {
+-	if (/^ed2k:\/\/\|file\|[^|]+\|(\d+)\|([\dabcdefABCDEF]+)\|/) {	
++	if (/^ed2k:\/\/\|file\|[^|]+\|(\d+)\|([\dabcdefABCDEF]+)\|/i) {	
  		my $size = $1;
  		my $md4 = $2;
  		my $req = HTTP::Request->new(
