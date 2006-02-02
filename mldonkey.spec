@@ -24,7 +24,7 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-%define ocaml_ver	3.08.4
+%define ocaml_ver	3.09.1
 #%define patch_pack	c
 %define real_ver	2.7.3
 #Version:	%{real_ver}%{patch_pack}
@@ -44,9 +44,8 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
-#Patch3:		%{name}-newocaml.patch
 # PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
-#Patch4:		%{name}-patch_pack30%{patch_pack}.gz
+#PatchX:		%{name}-patch_pack30%{patch_pack}.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -187,8 +186,6 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch3 -p1
-#%patch4 -p1
 
 %build
 cd config
