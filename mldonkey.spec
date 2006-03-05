@@ -21,14 +21,14 @@
 %undefine with_gui
 %endif
 
+%define ocaml_ver	3.09.1
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-%define ocaml_ver	3.09.1
 #%define patch_pack	c
 %define real_ver	2.7.3
-#Version:	%{real_ver}%{patch_pack}
 Version:	%{real_ver}
+#Version:	%{real_ver}%{patch_pack}
 Release:	1
 License:	GPL
 Group:		Applications/Networking
@@ -56,7 +56,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 %{?with_gui:BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6}
 BuildRequires:	perl-base
-BuildRequires:	rpmbuild(macros) >= 1.202
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	zlib-devel
 Requires(post):	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
@@ -280,17 +280,11 @@ if [ ! -f /var/log/mldonkey.log ]; then
 fi
 
 /sbin/chkconfig --add mldonkey
-if [ -f /var/lock/subsys/mldonkey ]; then
-	/etc/rc.d/init.d/mldonkey restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/mldonkey start\" to start mldonkey." >&2
-fi
+%service mldonkey restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/mldonkey ]; then
-		/etc/rc.d/init.d/mldonkey stop
-	fi
+	%service mldonkey stop
 	/sbin/chkconfig --del mldonkey
 fi
 
