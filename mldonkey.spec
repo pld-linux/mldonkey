@@ -15,13 +15,13 @@
 %bcond_without	donkey		# without eDonkey support
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
-%bcond_with	gui		# with mlgui
+%bcond_without	gui		# with mlgui
 
 %ifarch alpha
 %undefine with_gui
 %endif
 
-%define ocaml_ver	1:3.09.1
+%define ocaml_ver	3.09.1
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
@@ -45,16 +45,18 @@ Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
 # PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
-#PatchX:		%{name}-patch_pack30%{patch_pack}.gz
+#PatchX: %{name}-patch_pack30%{patch_pack}.gz
 URL:		http://www.nongnu.org/mldonkey/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-%{?with_gui:BuildRequires:	gtk+-devel}
+%{?with_gui:BuildRequires:	gd-devel}
+%{?with_gui:BuildRequires:	gtk+2-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}
-%{?with_gui:BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6}
+BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
+%{?with_gui:BuildRequires:	ocaml-lablgtk2-devel}
+%{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel}
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	zlib-devel
@@ -81,20 +83,20 @@ MLDonkey is a door to the 'donkey' network, a decentralized network
 used to exchange big files on the Internet. It is written in a
 wonderful language, called Objective-Caml, and present most features
 of the basic Windows donkey client, plus some more:
-  - It should work on most UNIX-compatible platforms.
-  - You can remotely command your client, either by telnet, on a WEB
-    browser, or with the GTK+ interface.
-  - You can connect to several servers, and each search will query all
-    the connected servers.
-  - You can select MP3s by bitrates in queries (useful ?).
-  - You can select the name of a downloaded file before moving it to
-    your incoming directory.
-  - You can have several queries in the graphical user interface at the
-    same time.
-  - You can remember your old queries results in the command-line
-    interface.
-  - You can search in the history of all files you have seen on the
-    network.
+- It should work on most UNIX-compatible platforms.
+- You can remotely command your client, either by telnet, on a WEB
+  browser, or with the GTK+ interface.
+- You can connect to several servers, and each search will query all
+  the connected servers.
+- You can select MP3s by bitrates in queries (useful ?).
+- You can select the name of a downloaded file before moving it to
+  your incoming directory.
+- You can have several queries in the graphical user interface at the
+  same time.
+- You can remember your old queries results in the command-line
+  interface.
+- You can search in the history of all files you have seen on the
+  network.
 
 It can also access other peer-to-peer networks:
 - Direct Connect
@@ -110,25 +112,25 @@ peer-to-peer bardzo wydajnej przy przesy³aniu du¿ych plików dziêki
 protoko³owi pobierania danych z wielu ¼róde³. Klient ten zosta³
 napisany w jêzyku Objective-Caml i ma wiêkszo¶æ cech podstawowego
 klienta windowsowego, a ponadto:
- - dzia³a na wiêkszo¶ci platform uniksowych,
- - pozwala zdalnie sterowaæ klientem przez interfejs telnet, WWW lub
-   GTK+,
- - mo¿na ³±czyæ siê z kilkoma serwerami, wtedy ka¿de przeszukiwanie
-   odpyta po³±czone serwery,
- - mo¿na wybieraæ pliki MP3 po bitrate w zapytaniach,
- - mo¿na wybieraæ nazwê pliku do ¶ci±gniêcia przed przej¶ciem do
-   katalogu incoming,
- - mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym interfejsie,
- - mo¿na zapamiêtaæ wyniki zapytañ w interfejsie z linii poleceñ,
- - mo¿na przeszukiwaæ historiê wszystkich plików widzianych w sieci.
+- dzia³a na wiêkszo¶ci platform uniksowych,
+- pozwala zdalnie sterowaæ klientem przez interfejs telnet, WWW lub
+  GTK+,
+- mo¿na ³±czyæ siê z kilkoma serwerami, wtedy ka¿de przeszukiwanie
+  odpyta po³±czone serwery,
+- mo¿na wybieraæ pliki MP3 po bitrate w zapytaniach,
+- mo¿na wybieraæ nazwê pliku do ¶ci±gniêcia przed przej¶ciem do
+  katalogu incoming,
+- mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym interfejsie,
+- mo¿na zapamiêtaæ wyniki zapytañ w interfejsie z linii poleceñ,
+- mo¿na przeszukiwaæ historiê wszystkich plików widzianych w sieci.
 
 Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
- - Direct Connect,
- - Open Napster,
- - Gnutella LimeWire,
- - Soulseek,
- - Audio Galaxy,
- - OpenFT.
+- Direct Connect,
+- Open Napster,
+- Gnutella LimeWire,
+- Soulseek,
+- Audio Galaxy,
+- OpenFT.
 
 %package gui
 Summary:	Graphical frontend for mldonkey based on GTK+
@@ -188,21 +190,11 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %patch1 -p1
 
 %build
-cd config
-%{__autoconf}
-cd ..
 cp -f /usr/share/automake/config.sub src/applets/kde/admin
 cp -f /usr/share/automake/config.sub config
 
-mkdir -p build
-rm -f icons/big/*.ml_icon
-rm -f icons/small/*.ml_icon
-rm -f icons/*.ml_icon
-rm -f *.cma *.cmxa *.a
-rm -f mlgnut mlnap mlbt mldonkey mlslsk mldonkey_gui*
-rm -f build/*.cma build/*.cmxa build/*.a
-touch .depend
 cd config
+%{__autoconf}
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	--enable-pthread \
@@ -218,10 +210,11 @@ cd config
 	%{?with_donkey:--en}%{!?with_donkey:--dis}able-donkey \
 	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
 	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
-	%{?with_gui:--en}%{!?with_gui:--dis}able-gui
+	%{?with_gui:--en}%{!?with_gui:--dis}able-gui%{?with_gui:=newgui2}
 
 cd ..
-%{__make} opt utils
+%{__make}
+%{__make} utils
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -238,7 +231,6 @@ install mlnet+gui $RPM_BUILD_ROOT%{_bindir}/mlnet+gui
 install mlguistarter $RPM_BUILD_ROOT%{_bindir}/mlguistarter
 install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
 install mlim $RPM_BUILD_ROOT%{_bindir}/mlim
-install mlprogress $RPM_BUILD_ROOT%{_bindir}/mlprogress
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 %endif
 
@@ -330,7 +322,6 @@ chmod 640 /etc/sysconfig/mldonkey
 %attr(755,root,root) %{_bindir}/mlchat
 %attr(755,root,root) %{_bindir}/mlim
 %attr(755,root,root) %{_bindir}/mlgui
-%attr(755,root,root) %{_bindir}/mlprogress
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
