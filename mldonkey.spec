@@ -1,6 +1,9 @@
 # TODO
 #  - it creates file: .mldonkey/mlnet_strings.C
 #  - mlnetd crashes on sparc (ca 15 minutes afrer start)
+#  - build fails on alpha:
+#    http://caml.inria.fr/mantis/view.php?id=3072
+#    http://buildlogs.pld-linux.org/index.php?idx=15&ok=0&ns=0&cnt=16&off=16&id=415a7e23dca873a5fa0f1811e5c2503b
 #
 # Conditional build:
 %bcond_without	audiogalaxy	# without Audio Galaxy support
