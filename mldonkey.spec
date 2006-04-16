@@ -1,9 +1,6 @@
 # TODO
 #  - it creates file: .mldonkey/mlnet_strings.C
 #  - mlnetd crashes on sparc (ca 15 minutes afrer start)
-#  - build fails on alpha:
-#    http://caml.inria.fr/mantis/view.php?id=3072
-#    http://buildlogs.pld-linux.org/index.php?idx=15&ok=0&ns=0&cnt=16&off=16&id=415a7e23dca873a5fa0f1811e5c2503b
 #
 # Conditional build:
 %bcond_without	audiogalaxy	# without Audio Galaxy support
@@ -32,7 +29,7 @@ Name:		mldonkey
 %define real_ver	2.7.3
 Version:	%{real_ver}
 #Version:	%{real_ver}%{patch_pack}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 #Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
@@ -79,6 +76,9 @@ Requires:	rc-scripts >= 0.4.0.10
 Requires:	wget
 Provides:	group(mldonkey)
 Provides:	user(mldonkey)
+# http://caml.inria.fr/mantis/view.php?id=3072
+# http://buildlogs.pld-linux.org/index.php?idx=15&ok=0&ns=0&cnt=16&off=16&id=415a7e23dca873a5fa0f1811e5c2503b
+ExcludeArch:	alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
