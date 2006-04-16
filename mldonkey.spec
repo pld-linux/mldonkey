@@ -21,7 +21,7 @@
 %undefine with_gui
 %endif
 
-%define ocaml_ver	3.09.1
+%define ocaml_ver	1:3.09.1
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
@@ -53,7 +53,7 @@ BuildRequires:	bzip2-devel
 %{?with_gui:BuildRequires:	gtk+-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
+BuildRequires:	ocaml-camlp4 >= %{ocaml_ver}
 %{?with_gui:BuildRequires:	ocaml-lablgtk-devel >= 1:1.2.6}
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.268
