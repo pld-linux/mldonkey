@@ -24,7 +24,7 @@ Version:	2.7.5
 Release:	0.1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://kent.dl.sourceforge.net/sourceforge/mldonkey/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
 # Source0-md5:	3e6bcac8c49dd00a563199130aeaf185
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
