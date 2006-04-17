@@ -3,13 +3,12 @@
 #  - mlnetd crashes on sparc (ca 15 minutes afrer start)
 #
 # Conditional build:
-%bcond_without	audiogalaxy	# without Audio Galaxy support
-%bcond_without	opennap		# without Open Napster support
+%bcond_with	opennap		# without Open Napster support
 %bcond_without	gnutella	# without Gnutella LimeWire support
 %bcond_without	gnutella2	# without Gnutella2 support
 %bcond_without	fasttrack	# without FastTrack support
-%bcond_without	directconnect	# with Direct Connect support
-%bcond_without	soulseek	# without Soulseek support
+%bcond_with	directconnect	# with Direct Connect support
+%bcond_with	soulseek	# without Soulseek support
 %bcond_with	openft		# without OpenFT support	(broken)
 %bcond_without	cymes		# without Cymes support
 %bcond_without	donkey		# without eDonkey support
@@ -21,17 +20,11 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-#%define patch_pack	c
-%define real_ver	2.7.3
-Version:	%{real_ver}
-#Version:	%{real_ver}%{patch_pack}
-Release:	2
+Version:	2.7.5
+Release:	0.1
 License:	GPL
 Group:		Applications/Networking
-#Source0:	http://cvs.berlios.de/cgi-bin/viewcvs.cgi/mldonkey/mldonkey/mldonkey.tar.gz?tarball=1
-#Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.gz
-#Source0:	http://download.berlios.de/pub/mldonkey/spiralvoice/cvs/%{name}-%{real_ver}.tar.bz2
-Source0:	http://savannah.nongnu.org/download/mldonkey/%{name}-%{version}.tar.bz2
+Source0:	http://kent.dl.sourceforge.net/sourceforge/mldonkey/mldonkey-2.7.5.tar.bz2
 # Source0-md5:	f6c7c183fda53a9e9c26a09f8cdefda7
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
@@ -40,9 +33,7 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
-# PatchPack from http://download.berlios.de/pub/mldonkey/spiralvoice/patchpacks/
-#PatchX: %{name}-patch_pack30%{patch_pack}.gz
-URL:		http://www.nongnu.org/mldonkey/
+URL:		http://mldonkey.sourceforge.net/Main_Page
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -102,7 +93,6 @@ It can also access other peer-to-peer networks:
 - Open Napster
 - Gnutella LimeWire
 - Soulseek
-- Audio Galaxy
 - OpenFT
 
 %description -l pl
@@ -128,7 +118,6 @@ Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
 - Open Napster,
 - Gnutella LimeWire,
 - Soulseek,
-- Audio Galaxy,
 - OpenFT.
 
 %package gui
@@ -197,7 +186,6 @@ cd config
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	--enable-pthread \
-	%{?with_audiogalaxy:--en}%{!?with_audiogalaxy:--dis}able-audiogalaxy \
 	%{?with_opennap:--en}%{!?with_opennap:--dis}able-opennap \
 	%{?with_gnutella:--en}%{!?with_gnutella:--dis}able-gnutella \
 	%{?with_gnutella2:--en}%{!?with_gnutella2:--dis}able-gnutella2 \
