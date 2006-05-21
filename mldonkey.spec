@@ -16,16 +16,16 @@
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# with mlgui
 #
-%define ocaml_ver	3.09.1
+%define ocaml_ver	3.09.2
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.7.5
+Version:	2.7.6
 Release:	0.1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	3e6bcac8c49dd00a563199130aeaf185
+# Source0-md5:	08e3cccce6fe65f5437a309276fe2c68
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
