@@ -313,7 +313,7 @@ chmod 640 /etc/sysconfig/mldonkey
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
 %{_pixmapsdir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %endif
 
 %files submit
