@@ -1,0 +1,11 @@
+--- mldonkey-2.8.1/src/daemon/driver/driverMain.ml.orig	2006-11-23 14:48:40.000000000 +0000
++++ mldonkey-2.8.1/src/daemon/driver/driverMain.ml	2006-11-23 14:48:55.000000000 +0000
+@@ -342,7 +342,7 @@
+     end;
+ 
+   (
+-    let hostname = "www.mldonkey.net" in
++    let hostname = "www.mldonkey.org" in
+     try
+       ignore(Ip.from_name hostname);
+       DriverInteractive.dns_works := true
