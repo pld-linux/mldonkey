@@ -20,12 +20,12 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.7.7
-Release:	2
+Version:	2.8.1
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	d7b92ae3e8782a3c4adeb0e7870c07dc
+# Source0-md5:	10452ad305f105d0d0761977f825694d
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -33,6 +33,7 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
+Patch2:		%{name}-dnscheck.patch
 URL:		http://mldonkey.sourceforge.net/Main_Page
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -176,6 +177,7 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.sub src/applets/kde/admin
@@ -216,8 +218,6 @@ install distrib/mldonkey_command $RPM_BUILD_ROOT%{_bindir}/mldonkey_command
 install mlgui $RPM_BUILD_ROOT%{_bindir}/mlgui
 install mlnet+gui $RPM_BUILD_ROOT%{_bindir}/mlnet+gui
 install mlguistarter $RPM_BUILD_ROOT%{_bindir}/mlguistarter
-install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
-install mlim $RPM_BUILD_ROOT%{_bindir}/mlim
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 %endif
 
@@ -306,8 +306,6 @@ chmod 640 /etc/sysconfig/mldonkey
 %if %{with gui}
 %files gui
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/mlchat
-%attr(755,root,root) %{_bindir}/mlim
 %attr(755,root,root) %{_bindir}/mlgui
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
