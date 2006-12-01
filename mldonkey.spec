@@ -45,6 +45,8 @@ BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-devel}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel}
+%{?with_gui:BuildRequires:	librsvg-devel}
+BuildRequires:	cpp
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	zlib-devel
