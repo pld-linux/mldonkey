@@ -21,7 +21,7 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.8.2
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
@@ -295,7 +295,7 @@ chmod 640 /etc/sysconfig/mldonkey
 
 %files
 %defattr(644,root,root,755)
-%doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,ed2k_links.txt,FAQ.html,Todo.txt}
+%doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,ed2k_links.txt,Todo.txt}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/mldonkey
 %attr(754,root,root) /etc/rc.d/init.d/mldonkey
 %attr(755,root,root) %{_bindir}/mlnet
