@@ -16,7 +16,7 @@
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# with mlgui
 #
-%define ocaml_ver	3.09.2
+%define ocaml_ver	3.09.3
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
