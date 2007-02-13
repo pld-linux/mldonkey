@@ -18,7 +18,7 @@
 #
 %define ocaml_ver	3.09.3
 Summary:	eDonkey 2000 p2p network client
-Summary(pl.UTF-8):   Klient sieci p2p eDonkey 2000
+Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.8.2
 Release:	1
@@ -124,7 +124,7 @@ Klient umożliwia także dostęp do innych sieci peer-to-peer:
 
 %package gui
 Summary:	Graphical frontend for mldonkey based on GTK+
-Summary(pl.UTF-8):   Graficzny interfejs użytkownika GTK+ dla mldonkey
+Summary(pl.UTF-8):	Graficzny interfejs użytkownika GTK+ dla mldonkey
 Group:		X11/Applications/Networking
 
 %description gui
@@ -141,7 +141,7 @@ pozwala wyszukiwać pliki w przyjemny sposób.
 
 %package submit
 Summary:	This tool gives you an easy way to add a ed2k-link
-Summary(pl.UTF-8):   Narzędzie pozwalające łatwo dodać odnośniki ed2k
+Summary(pl.UTF-8):	Narzędzie pozwalające łatwo dodać odnośniki ed2k
 Group:		X11/Applications
 Requires:	kdelibs
 Requires:	perl-libwww
@@ -162,7 +162,7 @@ Trzeba zmodyfikować plik /etc/sysconfig/mldonkey_submit.
 
 %package utils
 Summary:	Misc utils for mldonkey
-Summary(pl.UTF-8):   Różne narzędzia dla mldonkeya
+Summary(pl.UTF-8):	Różne narzędzia dla mldonkeya
 Group:		Applications/Networking
 
 %description utils
