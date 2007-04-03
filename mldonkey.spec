@@ -21,7 +21,7 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.8.4
-Release:	0.1
+Release:	0.9
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
@@ -180,7 +180,6 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %patch1 -p1
 
 %build
-cp -f /usr/share/automake/config.sub src/applets/kde/admin
 cp -f /usr/share/automake/config.sub config
 
 cd config
