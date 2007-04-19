@@ -20,12 +20,12 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.7.7
-Release:	2
+Version:	2.8.4
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	d7b92ae3e8782a3c4adeb0e7870c07dc
+# Source0-md5:	dfe0bf768ea8cd2f5094b1cbc8d7469b
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -44,6 +44,8 @@ BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-devel}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel}
+%{?with_gui:BuildRequires:	librsvg-devel}
+BuildRequires:	cpp
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	zlib-devel
@@ -178,11 +180,12 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %patch1 -p1
 
 %build
-cp -f /usr/share/automake/config.sub src/applets/kde/admin
 cp -f /usr/share/automake/config.sub config
 
 cd config
 %{__autoconf}
+LDFLAGS="%{rpmldflags} -L/usr/X11R6/lib"
+export LDFLAGS
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	--enable-pthread \
@@ -216,8 +219,6 @@ install distrib/mldonkey_command $RPM_BUILD_ROOT%{_bindir}/mldonkey_command
 install mlgui $RPM_BUILD_ROOT%{_bindir}/mlgui
 install mlnet+gui $RPM_BUILD_ROOT%{_bindir}/mlnet+gui
 install mlguistarter $RPM_BUILD_ROOT%{_bindir}/mlguistarter
-install mlchat $RPM_BUILD_ROOT%{_bindir}/mlchat
-install mlim $RPM_BUILD_ROOT%{_bindir}/mlim
 install distrib/mldonkey_previewer $RPM_BUILD_ROOT%{_bindir}/mldonkey_previewer
 %endif
 
@@ -295,7 +296,7 @@ chmod 640 /etc/sysconfig/mldonkey
 
 %files
 %defattr(644,root,root,755)
-%doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,ed2k_links.txt,FAQ.html,Todo.txt}
+%doc docs/* distrib/{Authors.txt,Bugs.txt,ChangeLog,ed2k_links.txt,Todo.txt}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/mldonkey
 %attr(754,root,root) /etc/rc.d/init.d/mldonkey
 %attr(755,root,root) %{_bindir}/mlnet
@@ -306,14 +307,12 @@ chmod 640 /etc/sysconfig/mldonkey
 %if %{with gui}
 %files gui
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/mlchat
-%attr(755,root,root) %{_bindir}/mlim
 %attr(755,root,root) %{_bindir}/mlgui
 %attr(755,root,root) %{_bindir}/mlnet+gui
 %attr(755,root,root) %{_bindir}/mlguistarter
 %attr(755,root,root) %{_bindir}/mldonkey_previewer
 %{_pixmapsdir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %endif
 
 %files submit
