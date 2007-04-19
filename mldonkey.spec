@@ -184,7 +184,7 @@ cp -f /usr/share/automake/config.sub config
 
 cd config
 %{__autoconf}
-LDFLAGS="%{rpmldflags} -L/usr/X11R6/lib"
+LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
 export LDFLAGS
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
