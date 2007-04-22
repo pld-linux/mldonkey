@@ -38,15 +38,16 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 %{?with_gui:BuildRequires:	gd-devel}
-%{?with_gui:BuildRequires:	gtk+2-devel}
+%{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
-%{?with_gui:BuildRequires:	ocaml-lablgtk2-devel}
-%{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel}
-%{?with_gui:BuildRequires:	librsvg-devel}
+%{?with_gui:BuildRequires:	ocaml-lablgtk2-devel >= 2.6.0}
+%{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel >= 2.6.0}
+%{?with_gui:BuildRequires:	librsvg-devel >= 2.0}
 BuildRequires:	cpp
 BuildRequires:	perl-base
+%{?with_gui:BuildRequires:	pkgconfig}
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	zlib-devel
 Requires(post):	sed >= 4.0
