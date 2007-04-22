@@ -37,16 +37,17 @@ URL:		http://mldonkey.sourceforge.net/Main_Page
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	cpp
 %{?with_gui:BuildRequires:	gd-devel}
 %{?with_gui:BuildRequires:	gtk+2-devel}
+%{?with_gui:BuildRequires:	librsvg-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-devel}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel}
-%{?with_gui:BuildRequires:	librsvg-devel}
-BuildRequires:	cpp
 BuildRequires:	perl-base
+%{?with_gui:BuildRequires:	pkgconfig}
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	zlib-devel
 Requires(post):	sed >= 4.0
