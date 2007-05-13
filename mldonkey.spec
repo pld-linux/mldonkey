@@ -16,12 +16,12 @@
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# with mlgui
 #
-%define ocaml_ver	3.09.3
+%define ocaml_ver	3.09.2
 Summary:	eDonkey 2000 p2p network client
-Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
+Summary(pl):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.8.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
@@ -37,15 +37,15 @@ URL:		http://mldonkey.sourceforge.net/Main_Page
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	cpp
 %{?with_gui:BuildRequires:	gd-devel}
-%{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
+%{?with_gui:BuildRequires:	gtk+2-devel}
+%{?with_gui:BuildRequires:	librsvg-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
-%{?with_gui:BuildRequires:	ocaml-lablgtk2-devel >= 2.6.0}
-%{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel >= 2.6.0}
-%{?with_gui:BuildRequires:	librsvg-devel >= 2.0}
-BuildRequires:	cpp
+%{?with_gui:BuildRequires:	ocaml-lablgtk2-devel}
+%{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel}
 BuildRequires:	perl-base
 %{?with_gui:BuildRequires:	pkgconfig}
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -98,25 +98,25 @@ It can also access other peer-to-peer networks:
 - Soulseek
 - OpenFT
 
-%description -l pl.UTF-8
+%description -l pl
 mldonkey jest nowym klientem do eDonkey 2000, zdecentralizowanej sieci
-peer-to-peer bardzo wydajnej przy przesyÅ‚aniu duÅ¼ych plikÃ³w dziÄ™ki
-protokoÅ‚owi pobierania danych z wielu ÅºrÃ³deÅ‚. Klient ten zostaÅ‚
-napisany w jÄ™zyku Objective-Caml i ma wiÄ™kszoÅ›Ä‡ cech podstawowego
+peer-to-peer bardzo wydajnej przy przesy³aniu du¿ych plików dziêki
+protoko³owi pobierania danych z wielu ¼róde³. Klient ten zosta³
+napisany w jêzyku Objective-Caml i ma wiêkszo¶æ cech podstawowego
 klienta windowsowego, a ponadto:
-- dziaÅ‚a na wiÄ™kszoÅ›ci platform uniksowych,
-- pozwala zdalnie sterowaÄ‡ klientem przez interfejs telnet, WWW lub
+- dzia³a na wiêkszo¶ci platform uniksowych,
+- pozwala zdalnie sterowaæ klientem przez interfejs telnet, WWW lub
   GTK+,
-- moÅ¼na Å‚Ä…czyÄ‡ siÄ™ z kilkoma serwerami, wtedy kaÅ¼de przeszukiwanie
-  odpyta poÅ‚Ä…czone serwery,
-- moÅ¼na wybieraÄ‡ pliki MP3 po bitrate w zapytaniach,
-- moÅ¼na wybieraÄ‡ nazwÄ™ pliku do Å›ciÄ…gniÄ™cia przed przejÅ›ciem do
+- mo¿na ³±czyæ siê z kilkoma serwerami, wtedy ka¿de przeszukiwanie
+  odpyta po³±czone serwery,
+- mo¿na wybieraæ pliki MP3 po bitrate w zapytaniach,
+- mo¿na wybieraæ nazwê pliku do ¶ci±gniêcia przed przej¶ciem do
   katalogu incoming,
-- moÅ¼na jednoczeÅ›nie wykonywaÄ‡ kilka zapytaÅ„ w graficznym interfejsie,
-- moÅ¼na zapamiÄ™taÄ‡ wyniki zapytaÅ„ w interfejsie z linii poleceÅ„,
-- moÅ¼na przeszukiwaÄ‡ historiÄ™ wszystkich plikÃ³w widzianych w sieci.
+- mo¿na jednocze¶nie wykonywaæ kilka zapytañ w graficznym interfejsie,
+- mo¿na zapamiêtaæ wyniki zapytañ w interfejsie z linii poleceñ,
+- mo¿na przeszukiwaæ historiê wszystkich plików widzianych w sieci.
 
-Klient umoÅ¼liwia takÅ¼e dostÄ™p do innych sieci peer-to-peer:
+Klient umo¿liwia tak¿e dostêp do innych sieci peer-to-peer:
 - Direct Connect,
 - Open Napster,
 - Gnutella LimeWire,
@@ -125,7 +125,7 @@ Klient umoÅ¼liwia takÅ¼e dostÄ™p do innych sieci peer-to-peer:
 
 %package gui
 Summary:	Graphical frontend for mldonkey based on GTK+
-Summary(pl.UTF-8):	Graficzny interfejs uÅ¼ytkownika GTK+ dla mldonkey
+Summary(pl):	Graficzny interfejs u¿ytkownika GTK+ dla mldonkey
 Group:		X11/Applications/Networking
 
 %description gui
@@ -134,15 +134,15 @@ all mldonkey operations. It gives details about connected servers,
 downloaded files, friends and lets one search for files in a pleasing
 way.
 
-%description gui -l pl.UTF-8
-Interfejs uÅ¼ytkownika GTK+ dla mldonkey daje wygodny sposÃ³b
-zarzÄ…dzania wszystkimi operacjami mldonkey. UdostÄ™pnia szczegÃ³Å‚y
-dotyczÄ…ce poÅ‚Ä…czonych serwerÃ³w, Å›ciÄ…ganych plikÃ³w, znajomych oraz
-pozwala wyszukiwaÄ‡ pliki w przyjemny sposÃ³b.
+%description gui -l pl
+Interfejs u¿ytkownika GTK+ dla mldonkey daje wygodny sposób
+zarz±dzania wszystkimi operacjami mldonkey. Udostêpnia szczegó³y
+dotycz±ce po³±czonych serwerów, ¶ci±ganych plików, znajomych oraz
+pozwala wyszukiwaæ pliki w przyjemny sposób.
 
 %package submit
 Summary:	This tool gives you an easy way to add a ed2k-link
-Summary(pl.UTF-8):	NarzÄ™dzie pozwalajÄ…ce Å‚atwo dodaÄ‡ odnoÅ›niki ed2k
+Summary(pl):	Narzêdzie pozwalaj±ce ³atwo dodaæ odno¶niki ed2k
 Group:		X11/Applications
 Requires:	kdelibs
 Requires:	perl-libwww
@@ -154,24 +154,24 @@ with a single click to your mldonkey download queue.
 
 You need to edit /etc/sysconfig/mldonkey_submit.
 
-%description submit -l pl.UTF-8
-To narzÄ™dzie pozwala Å‚atwo dodaÄ‡ odnoÅ›nik ed2k (w rodzaju
+%description submit -l pl
+To narzêdzie pozwala ³atwo dodaæ odno¶nik ed2k (w rodzaju
 ed2k://|file|filename.exe|21352658|72b0b287cab7d875ccc1d89ebe910b9g|)
-pojedynczym klikniÄ™ciem na kolejkÄ™ Å›ciÄ…gania mldonkey.
+pojedynczym klikniêciem na kolejkê ¶ci±gania mldonkey.
 
-Trzeba zmodyfikowaÄ‡ plik /etc/sysconfig/mldonkey_submit.
+Trzeba zmodyfikowaæ plik /etc/sysconfig/mldonkey_submit.
 
 %package utils
 Summary:	Misc utils for mldonkey
-Summary(pl.UTF-8):	RÃ³Å¼ne narzÄ™dzia dla mldonkeya
+Summary(pl):	Ró¿ne narzêdzia dla mldonkeya
 Group:		Applications/Networking
 
 %description utils
 This package includes misc utils for mldonkey eg.: mld_hash,
 make_torent, get_range, copysource, subconv, svg_converter.
 
-%description utils -l pl.UTF-8
-Ten pakiet zawiera nastÄ™pujÄ…ce narzÄ™dzia dla mldonkeya: mld_hash,
+%description utils -l pl
+Ten pakiet zawiera nastêpuj±ce narzêdzia dla mldonkeya: mld_hash,
 make_torent, get_range, copysource, subconv, svg_converter.
 
 %prep
@@ -185,6 +185,8 @@ cp -f /usr/share/automake/config.sub config
 
 cd config
 %{__autoconf}
+LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
+export LDFLAGS
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	--enable-pthread \
