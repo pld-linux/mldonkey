@@ -136,8 +136,8 @@ case "$1" in
 	;;
   clean)
 	stop && sleep 20
-	rm ~mldonkey/*.tmp >/dev/null 2>&1
-	rm ~mldonkey/mlnet.pid >/dev/null 2>&1
+	rm ~mldonkey/.mldonkey/*.tmp >/dev/null 2>&1
+	rm ~mldonkey/.mldonkey/mlnet.pid >/dev/null 2>&1
 	;;
   status)
 	status mldonkey $PROG
