@@ -16,7 +16,7 @@
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# with mlgui
 #
-%define ocaml_ver	3.09.3
+%define ocaml_ver	3.10.0
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
@@ -33,7 +33,6 @@ Source4:	%{name}.png
 Source5:	%{name}-gui.desktop
 Patch0:		%{name}-configwin.patch
 Patch1:		%{name}-newgtk.patch
-Patch2:		%{name}-ocaml_version.patch
 URL:		http://mldonkey.sourceforge.net/Main_Page
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -183,7 +182,6 @@ make_torent, get_range, copysource, subconv, svg_converter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.sub config
