@@ -37,7 +37,7 @@ URL:		http://mldonkey.sourceforge.net/Main_Page
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-BuildRequires:	gd-devel >= 2.0.14
+BuildRequires:	gd-devel >= 2.0.35-3
 %{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
 BuildRequires:	libmagic-devel
 BuildRequires:	libpng-devel
@@ -51,7 +51,6 @@ BuildRequires:	cpp
 BuildRequires:	perl-base
 %{?with_gui:BuildRequires:	pkgconfig}
 BuildRequires:	rpmbuild(macros) >= 1.268
-BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	zlib-devel
 Requires(post):	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
