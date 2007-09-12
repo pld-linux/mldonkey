@@ -16,7 +16,7 @@
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# with mlgui
 #
-%define ocaml_ver	3.10.0
+%define ocaml_ver	3.09.2
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
@@ -38,7 +38,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cpp
-BuildRequires:	gd-devel >= 2.0.35-3
+BuildRequires:	gd-devel >= 2.0.14
 %{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
 BuildRequires:	libmagic-devel
 BuildRequires:	libpng-devel
@@ -187,6 +187,8 @@ cp -f /usr/share/automake/config.sub config
 
 cd config
 %{__autoconf}
+LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
+export LDFLAGS
 %configure \
 	--enable-ocamlver=%{ocaml_ver} \
 	--enable-pthread \
