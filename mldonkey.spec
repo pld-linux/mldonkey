@@ -21,7 +21,7 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.9.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
@@ -275,12 +275,7 @@ if [ "$1" = "0" ]; then
 	%groupremove mldonkey
 fi
 
-%triggerpostun -- mldonkey < 2.5.22-2.1
-if [ -f /etc/sysconfig/mldonkey ]; then
-	sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
-fi
-
-%triggerpostun -- mldonkey < 2.5.22-2.3
+%triggerpostun -- mldonkey < 2.5.28-0.4
 if [ -f /etc/sysconfig/mldonkey.rpmnew ]; then
 	# new sysconfig, with lots of vars
 	# we copy from old one just $SERVICE_RUN_NICE_LEVEL
@@ -291,8 +286,6 @@ if [ -f /etc/sysconfig/mldonkey.rpmnew ]; then
 	cp -f /etc/sysconfig/mldonkey{,.rpmsave}
 	mv -f /etc/sysconfig/mldonkey{.rpmnew,}
 fi
-
-%triggerpostun -- mldonkey < 2.5.28-0.4
 chmod 640 /etc/sysconfig/mldonkey
 
 %files
