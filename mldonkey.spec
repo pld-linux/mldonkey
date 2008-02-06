@@ -275,7 +275,7 @@ if [ "$1" = "0" ]; then
 	%groupremove mldonkey
 fi
 
-%triggerpostun -- mldonkey <= 2.5.22-2
+%triggerpostun -- mldonkey < 2.5.22-2.1
 if [ -f /etc/sysconfig/mldonkey ]; then
 	sed -i -e 's@MLDONKEY_NICE@SERVICE_RUN_NICE_LEVEL@' /etc/sysconfig/mldonkey
 fi
