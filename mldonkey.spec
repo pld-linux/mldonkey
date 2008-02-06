@@ -15,13 +15,12 @@
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
 %bcond_without	gui		# with mlgui
-#
-%define ocaml_ver	3.10.0
+
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	2.9.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
@@ -45,7 +44,7 @@ BuildRequires:	libpng-devel
 %{?with_gui:BuildRequires:	librsvg-devel >= 2.0}
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml-camlp4 >= 1:%{ocaml_ver}
+BuildRequires:	ocaml-camlp4 >= 1:3.10.0
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-devel >= 2.6.0}
 %{?with_gui:BuildRequires:	ocaml-lablgtk2-rsvg-devel >= 2.6.0}
 BuildRequires:	perl-base
@@ -188,7 +187,7 @@ cp -f /usr/share/automake/config.sub config
 cd config
 %{__autoconf}
 %configure \
-	--enable-ocamlver=%{ocaml_ver} \
+	--enable-ocamlver=$(rpm -q --qf %{V} ocaml-camlp4) \
 	--enable-pthread \
 	%{?with_opennap:--en}%{!?with_opennap:--dis}able-opennap \
 	%{?with_gnutella:--en}%{!?with_gnutella:--dis}able-gnutella \
