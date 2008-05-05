@@ -1,6 +1,5 @@
 # TODO
 #  - it creates file: .mldonkey/mlnet_strings.C
-#  - mlnetd crashes on sparc (ca 15 minutes afrer start)
 #
 # Conditional build:
 %bcond_with	opennap		# without Open Napster support
@@ -19,12 +18,12 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.9.4
+Version:	2.9.5
 Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	b3b5e0679f6d65c290bfb32f264b1de6
+# Source0-md5:	54d839e8f1d2575657a53b584fa99592
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
