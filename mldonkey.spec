@@ -2,14 +2,10 @@
 #  - it creates file: .mldonkey/mlnet_strings.C
 #
 # Conditional build:
-%bcond_with	opennap		# without Open Napster support
 %bcond_without	gnutella	# without Gnutella LimeWire support
 %bcond_without	gnutella2	# without Gnutella2 support
 %bcond_without	fasttrack	# without FastTrack support
 %bcond_with	directconnect	# with Direct Connect support
-%bcond_with	soulseek	# without Soulseek support
-%bcond_with	openft		# without OpenFT support	(broken)
-%bcond_without	cymes		# without Cymes support
 %bcond_without	donkey		# without eDonkey support
 %bcond_without	bittorrent	# without BitTorrent support
 %bcond_without	filetp		# without fileTP support
@@ -18,12 +14,12 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.9.5
+Version:	2.9.6
 Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	54d839e8f1d2575657a53b584fa99592
+# Source0-md5:	5da87678449bf87ce0c78f37e7871eb9
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
@@ -95,8 +91,6 @@ It can also access other peer-to-peer networks:
 - Direct Connect
 - Open Napster
 - Gnutella LimeWire
-- Soulseek
-- OpenFT
 
 %description -l pl.UTF-8
 mldonkey jest nowym klientem do eDonkey 2000, zdecentralizowanej sieci
@@ -119,9 +113,7 @@ klienta windowsowego, a ponadto:
 Klient umożliwia także dostęp do innych sieci peer-to-peer:
 - Direct Connect,
 - Open Napster,
-- Gnutella LimeWire,
-- Soulseek,
-- OpenFT.
+- Gnutella LimeWire.
 
 %package gui
 Summary:	Graphical frontend for mldonkey based on GTK+
@@ -175,7 +167,6 @@ Ten pakiet zawiera następujące narzędzia dla mldonkeya: mld_hash,
 make_torent, get_range, copysource, subconv, svg_converter.
 
 %prep
-#%setup -q -n %{name}-%{real_ver}
 %setup -q
 %patch0 -p1
 %patch1 -p1
@@ -188,14 +179,10 @@ cd config
 %configure \
 	--enable-ocamlver=$(rpm -q --qf %{V} ocaml-camlp4) \
 	--enable-pthread \
-	%{?with_opennap:--en}%{!?with_opennap:--dis}able-opennap \
 	%{?with_gnutella:--en}%{!?with_gnutella:--dis}able-gnutella \
 	%{?with_gnutella2:--en}%{!?with_gnutella2:--dis}able-gnutella2 \
 	%{?with_fasttrack:--en}%{!?with_fasttrack:--dis}able-fasttrack \
 	%{?with_directconnect:--en}%{!?with_directconnect:--dis}able-directconnect \
-	%{?with_soulseek:--en}%{!?with_soulseek:--dis}able-soulseek \
-	%{?with_openft:--en}%{!?with_openft:--dis}able-openft \
-	%{?with_cymes:--en}%{!?with_cymes:--dis}able-cymes \
 	%{?with_donkey:--en}%{!?with_donkey:--dis}able-donkey \
 	%{?with_bittorrent:--en}%{!?with_bittorrent:--dis}able-bittorrent \
 	%{?with_filetp:--en}%{!?with_filetp:--dis}able-filetp \
