@@ -14,12 +14,12 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	2.9.7
+Version:	3.0.0
 Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	4733e48d71ea777506f7065a1605f98d
+# Source0-md5:	d45b37f334a4008ed15343dfb2caf453
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
