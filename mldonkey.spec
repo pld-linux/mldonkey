@@ -15,7 +15,7 @@ Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
 Version:	3.0.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
@@ -136,7 +136,6 @@ pozwala wyszukiwać pliki w przyjemny sposób.
 Summary:	This tool gives you an easy way to add a ed2k-link
 Summary(pl.UTF-8):	Narzędzie pozwalające łatwo dodać odnośniki ed2k
 Group:		X11/Applications
-Requires:	kdelibs
 Requires:	perl-libwww
 
 %description submit
