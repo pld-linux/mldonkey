@@ -1,5 +1,9 @@
 # TODO
-#  - it creates file: .mldonkey/mlnet_strings.C
+# - it creates file: .mldonkey/mlnet_strings.C
+# - initscript broken with start-stop-daemon mode:
+#   /etc/rc.d/init.d/mldonkey[149]: [: ~mldonkey: unexpected operator/operand                                                                    
+#   /sbin/start-stop-daemon: stat cd ~mldonkey && exec /usr/sbin/mlnetd > /var/log/mldonkey.log 2>&1: No such file or directory                  
+#   MLDonkey could not be started! Check logfile: /var/log/mldonkey.log            
 #
 # Conditional build:
 %bcond_without	gnutella	# without Gnutella LimeWire support
