@@ -1,9 +1,9 @@
 # TODO
 # - it creates file: .mldonkey/mlnet_strings.C
 # - initscript broken with start-stop-daemon mode:
-#   /etc/rc.d/init.d/mldonkey[149]: [: ~mldonkey: unexpected operator/operand                                                                    
+#   /etc/rc.d/init.d/mldonkey[149]: [: ~mldonkey: unexpected operator/operand
 #   /sbin/start-stop-daemon: stat cd ~mldonkey && exec /usr/sbin/mlnetd > /var/log/mldonkey.log 2>&1: No such file or directory                  
-#   MLDonkey could not be started! Check logfile: /var/log/mldonkey.log            
+#   MLDonkey could not be started! Check logfile: /var/log/mldonkey.log
 #
 # Conditional build:
 %bcond_without	gnutella	# without Gnutella LimeWire support
@@ -18,12 +18,12 @@
 Summary:	eDonkey 2000 p2p network client
 Summary(pl.UTF-8):	Klient sieci p2p eDonkey 2000
 Name:		mldonkey
-Version:	3.1.0
-Release:	4
+Version:	3.1.3
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
-# Source0-md5:	072726d158ba1e936c554be341e7ceff
+# Source0-md5:	671f60467a918a9b7c2affef63ff5c25
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.sh
