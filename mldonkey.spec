@@ -22,7 +22,7 @@ Version:	3.1.3
 Release:	1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://dl.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
+Source0:	http://download.sourceforge.net/mldonkey/%{name}-%{version}.tar.bz2
 # Source0-md5:	671f60467a918a9b7c2affef63ff5c25
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
