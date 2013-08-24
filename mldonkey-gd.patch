@@ -1,0 +1,11 @@
+--- config/configure~	2013-08-24 14:46:23.000000000 +0200
++++ config/configure	2013-08-24 14:51:30.000000000 +0200
+@@ -6814,7 +6814,7 @@
+     GDMAJORVERSION=`$GDLIBCONFIG --majorversion`
+     GDMINORVERSION=`$GDLIBCONFIG --minorversion`
+     GDREVISION=`$GDLIBCONFIG --revision`
+-    if  [ $GDMAJORVERSION = 2 ] && [ $GDMINORVERSION = 0 ] && [ $GDREVISION -gt 14 ]; then
++    if  [ $GDMAJORVERSION = 2 ] && [ $GDMINORVERSION -gt 0 -o $GDREVISION -gt 14 ]; then
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $GDVERSION" >&5
+ $as_echo "$GDVERSION" >&6; }
+ 	LIBGD=yes
