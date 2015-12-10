@@ -41,85 +41,93 @@ getpids() {
 }
 
 start() {
-	if [ ! -f /var/lock/subsys/mldonkey ]; then
-		msg_starting mldonkey
+	if [ -f /var/lock/subsys/mldonkey ]; then
+		msg_already_running mldonkey
+		return
+	fi
 
-		daemon --fork --user $USER "cd ~$USER && exec $MLDONKEY_PATH > ${LOG:-/dev/null} 2>&1"
-		RETVAL=$?
+	msg_starting mldonkey
 
-		# wait for it, it might die if config files are corrupted
-		timeout=0
-		while [ "$(getpids)" ]; do
-			if [ $timeout -ge 5 ]; then
-				break
-			fi
+	daemon --fork --user $USER "cd ~$USER && exec $MLDONKEY_PATH > ${LOG:-/dev/null} 2>&1"
+	RETVAL=$?
 
-			timeout=$((timeout + 1))
-			sleep 1
-		done
-
-		if ! getpids > /dev/null; then
-			nls "%s could not be started! Check logfile: %s" MLDonkey "$LOG"
-			RETVAL=0
+	# wait for it, it might die if config files are corrupted
+	timeout=0
+	while [ "$(getpids)" ]; do
+		if [ $timeout -ge 5 ]; then
+			break
 		fi
 
-		# TEMP FIX, rc-scripts fails to keep nice level, when su is used
-		# keep it, until rc-scripts is fixed.
-		for pid in $(getpids); do
-			renice ${SERVICE_RUN_NICE_LEVEL:-$DEFAULT_SERVICE_RUN_NICE_LEVEL} -p $pid > /dev/null
-		done
+		timeout=$((timeout + 1))
+		sleep 1
+	done
 
-		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/mldonkey
-	else
-		msg_already_running mldonkey
+	if ! getpids > /dev/null; then
+		nls "%s could not be started! Check logfile: %s" MLDonkey "$LOG"
+		RETVAL=0
 	fi
+
+	# TEMP FIX, rc-scripts fails to keep nice level, when su is used
+	# keep it, until rc-scripts is fixed.
+	for pid in $(getpids); do
+		renice ${SERVICE_RUN_NICE_LEVEL:-$DEFAULT_SERVICE_RUN_NICE_LEVEL} -p $pid > /dev/null
+	done
+
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/mldonkey
 }
 
 stop() {
-	if [ -f /var/lock/subsys/mldonkey ]; then
-		# first nicely, via web interface
-		BASE="http://"
-		if [[ -n ${USERNAME} && -n ${PASSWORD} ]]; then
-			BASE=${BASE}${USERNAME}:${PASSWORD}@
-		fi
-
-		msg_stopping mldonkey
-		BASE=${BASE}${SERVER}:${PORT}
-		wget -t 1 --spider ${BASE}/submit?q=close_fds -q
-		wget -t 1 --spider ${BASE}/submit?q=save -q
-		wget -t 1 --spider ${BASE}/submit?q=kill -q
-
-		if [ "$(getpids)" ]; then
-			fail
-			show "Waiting for MLDonkey to stop"
-			busy
-
-			RETVAL=0
-			timeout=0
-			while [ "$(getpids)" ]; do
-				if [ $timeout -ge 60 ]; then
-					RETVAL=1
-					break
-				fi
-
-				sleep 1
-				timeout=$((timeout + 1))
-			done
-		fi
-
-		# forcibly.
-		# killproc() sais itself ok or fail, therefore the 'if' statement here
-		if [ "$(getpids)" ]; then
-			killproc $PROG
-			RETVAL=$?
-		else
-			[ $RETVAL -eq 0 ] && ok || fail
-		fi
-
-		rm -f /var/lock/subsys/mldonkey >/dev/null 2>&1
-	else
+	if [ ! -f /var/lock/subsys/mldonkey ]; then
 		msg_not_running mldonkey
+		return
 	fi
+
+	# first nicely, via web interface
+	BASE="http://"
+	if [[ -n ${USERNAME} && -n ${PASSWORD} ]]; then
+		BASE=${BASE}${USERNAME}:${PASSWORD}@
+	fi
+
+	msg_stopping mldonkey
+	BASE=${BASE}${SERVER}:${PORT}
+	wget -t 1 --spider ${BASE}/submit?q=close_fds -q
+	wget -t 1 --spider ${BASE}/submit?q=save -q
+	wget -t 1 --spider ${BASE}/submit?q=kill -q
+
+	if [ "$(getpids)" ]; then
+		fail
+		show "Waiting for MLDonkey to stop"
+		busy
+
+		RETVAL=0
+		timeout=0
+		while [ "$(getpids)" ]; do
+			if [ $timeout -ge 60 ]; then
+				RETVAL=1
+				break
+			fi
+
+			sleep 1
+			timeout=$((timeout + 1))
+		done
+	fi
+
+	# forcibly.
+	# killproc() sais itself ok or fail, therefore the 'if' statement here
+	if [ "$(getpids)" ]; then
+		killproc $PROG
+		RETVAL=$?
+	else
+		[ $RETVAL -eq 0 ] && ok || fail
+	fi
+
+	rm -f /var/lock/subsys/mldonkey >/dev/null 2>&1
+}
+
+clean() {
+	stop && sleep 20
+	rm ~mldonkey/.mldonkey/*.tmp >/dev/null 2>&1
+	rm ~mldonkey/.mldonkey/mlnet.pid >/dev/null 2>&1
 }
 
 RETVAL=0
@@ -135,9 +143,7 @@ case "$1" in
 	start
 	;;
   clean)
-	stop && sleep 20
-	rm ~mldonkey/.mldonkey/*.tmp >/dev/null 2>&1
-	rm ~mldonkey/.mldonkey/mlnet.pid >/dev/null 2>&1
+	clean
 	;;
   status)
 	status mldonkey $PROG
