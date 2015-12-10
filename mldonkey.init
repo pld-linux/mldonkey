@@ -48,7 +48,7 @@ start() {
 
 	msg_starting mldonkey
 
-	daemon --fork --user $USER "cd ~$USER && exec $MLDONKEY_PATH > ${LOG:-/dev/null} 2>&1"
+	daemon --fork --user $USER --chdir ~$USER "/bin/sh -c '$MLDONKEY_PATH > ${LOG:-/dev/null} 2>&1'"
 	RETVAL=$?
 
 	# wait for it, it might die if config files are corrupted
