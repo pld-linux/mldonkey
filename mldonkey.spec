@@ -172,9 +172,9 @@ make_torent, get_range, copysource, subconv, svg_converter.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p0
 
 %build
 cp -f /usr/share/automake/config.sub config
